@@ -2,8 +2,40 @@
 import '../styles/App.scss';
 import imgUser from '../images/user.jpeg';
 import imgCover from '../images/cover.jpeg';
+import {useState} from 'react';
 
 function App() {
+  //constantes que necesitamos
+  const [name, setName] = useState('');
+  const [slogan, setSlogan] = useState('');
+  const [repo, setRepo] = useState('');
+  const [demo, setDemo] = useState('');
+  const [tech, setTech] = useState('');
+  const [desc, setDesc] = useState('');
+
+  //ExpReg 
+  const expReg = {demo: '^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$'};
+
+  //funciones manejadoras
+
+  const handleChangeInput = (event) => {
+    const inputValue = event.target.id;
+    if(inputValue === 'name'){
+      setName(event.target.value);
+      console.log(event.target.value);
+    }else if(inputValue === 'slogan'){
+      setSlogan(event.target.value);
+    }else if(inputValue === 'repo'){
+      setRepo(event.target.value);
+    }else if(inputValue === 'demo'){
+      setDemo(event.target.value);
+    }else if(inputValue === 'tech'){
+      setTech(event.target.value);
+    }else if(inputValue === 'desc'){
+      setDesc(event.target.value);
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -19,17 +51,20 @@ function App() {
                 <p className="subtitle">Personal Project Card</p>
                 <hr className="line" />
 
-                <h2 className="title">Elegant Workspace</h2>
-                <p className="slogan">Diseños Exclusivos</p>
+                <h2 className="title">{name || 'Elegant Workspace'}</h2>
+                <p className="slogan">{slogan || 'Diseños Exclusivos'}</p>
                 <p className="desc">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Libero, delectus? Voluptates at hic aliquam porro ad suscipit
-                  harum laboriosam saepe earum doloribus aperiam, ullam culpa
-                  accusantium placeat odit corrupti ipsum!
+                  {desc || 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.Libero, delectus'}
                 </p>
                 <section className="technologies">
-                  <p className="text">React JS, MongoDB</p>
+                  <p className="text">{tech || 'React JS, MongoDB'}</p>
                 </section>
+                <a href={demo} target= '_blank'>
+                <i class="fa-solid fa-globe"></i>
+                </a>
+                <a href={repo} target= '_blank'>
+                <i class="fa-brands fa-github"></i>
+                </a>
               </section>
 
               <section className="info-autor">
@@ -55,6 +90,7 @@ function App() {
                 placeholder="Nombre del proyecto"
                 name="name"
                 id="name"
+                onChange={handleChangeInput}
               />
               <input
                 className="input"
@@ -62,6 +98,7 @@ function App() {
                 name="slogan"
                 id="slogan"
                 placeholder="Slogan"
+                onChange={handleChangeInput}
               />
               <input
                 className="input"
@@ -69,6 +106,7 @@ function App() {
                 name="repo"
                 id="repo"
                 placeholder="Repo"
+                onChange={handleChangeInput}
               />
               <input
                 className="input"
@@ -76,6 +114,7 @@ function App() {
                 placeholder="Demo"
                 name="demo"
                 id="demo"
+                onChange={handleChangeInput}
               />
               <input
                 className="input"
@@ -83,6 +122,7 @@ function App() {
                 placeholder="Tecnologías"
                 name="technologies"
                 id="technologies"
+                onChange={handleChangeInput}
               />
               <textarea
                 className="textarea"
@@ -90,6 +130,7 @@ function App() {
                 placeholder="Descripción"
                 name="desc"
                 id="desc"
+                onChange={handleChangeInput}
               ></textarea>
             </fieldset>
 
