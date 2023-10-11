@@ -1,18 +1,15 @@
 // Fichero src/components/App.jsx
+import { useState } from 'react';
 import '../styles/App.scss';
 import imgUser from '../images/user.jpeg';
 import imgCover from '../images/cover.jpeg';
-import { useState } from 'react';
+
 
 function App() {
-  //constantes que necesitamos
-  const [name, setName] = useState('');
-  const [slogan, setSlogan] = useState('');
-  const [repo, setRepo] = useState('');
-  const [demo, setDemo] = useState('');
-  const [tech, setTech] = useState('');
-  const [desc, setDesc] = useState('');
 
+
+  const [data , setData] = useState ({ name : "", slogan : "", repo : "", demo: "", technologies: "", desc: "" });
+ const [message, setMessage] = useState ("")
   //ExpReg
   const expRegUrl =
     /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,})(\/[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]*)*$/;
@@ -20,45 +17,25 @@ function App() {
   //funciones manejadoras
 
   const handleChangeInput = (event) => {
-    const inputId = event.target.id;
-    const inputValue = event.target.value;
-    if (inputId === 'name') {
-      setName(inputValue);
-      console.log(event.target.value);
-    } else if (inputId === 'slogan') {
-      setSlogan(inputValue);
-    } else if (inputId === 'tech') {
-      setTech(inputValue);
-    } else if (inputId === 'desc') {
-      setDesc(inputValue);
+    const id = event.target.id;
+    const value = event.target.value;
+    ///condiconal? si el imput id es demo o repo llamar a la funcion validate
+    if(id === data.demo || id === data.repo) {
+      validateUrl();
+      console.log('hola');
     }
+  setData({...data, [id]: value});
   };
 
-  const handleBlurUrl = (event) => {
-    const inputId = event.target.id;
-    const inputValue = event.target.value;
-    if (inputId === 'repo') {
-      const result = handleValidateUrl(inputValue);
+  
 
-      if (result) {
-        setRepo(event.target.value);
-      }
-    } else if (inputId === 'demo') {
-      handleValidateUrl();
-      setDemo(event.target.value);
-    }
-  };
-
-  const handleValidateUrl = (url) => {
+  const validateUrl = (url) => {
     if (expRegUrl.test(url)) {
       if (url.includes('https://')) {
-        return url;
-      } else {
-        const newUrl = 'https://' + url;
-        return newUrl;
+        setMessage("");
       }
     } else {
-      return false;
+      setMessage("oye y el protocolo???");
     }
   };
 
@@ -77,20 +54,20 @@ function App() {
                 <p className='subtitle'>Personal Project Card</p>
                 <hr className='line' />
 
-                <h2 className='title'>{name || 'Elegant Workspace'}</h2>
-                <p className='slogan'>{slogan || 'Diseños Exclusivos'}</p>
+                <h2 className='title'>{data.name || 'Elegant Workspace'}</h2>
+                <p className='slogan'>{data.slogan || 'Diseños Exclusivos'}</p>
                 <p className='desc'>
-                  {desc ||
+                  {data.desc ||
                     'Lorem, ipsum dolor sit amet consectetur adipisicing elit.Libero, delectus'}
                 </p>
                 <section className='technologies'>
-                  <p className='text'>{tech || 'React JS, MongoDB'}</p>
+                  <p className='text'>{data.technologies || 'React JS, MongoDB'}</p>
                 </section>
-                <a href={demo} target='_blank'>
+                <a href={data.demo} target='_blank'>
                   <i className='fa-solid fa-globe'></i>
                 </a>
 
-                <a href={repo} target='_blank'>
+                <a href={data.repo} target='_blank'>
                   <i className='fa-brands fa-github'></i>
                 </a>
               </section>
@@ -118,7 +95,7 @@ function App() {
                 placeholder='Nombre del proyecto'
                 name='name'
                 id='name'
-                value={name}
+                value={data.name}
                 onChange={handleChangeInput}
               />
               <input
@@ -126,7 +103,7 @@ function App() {
                 type='text'
                 name='slogan'
                 id='slogan'
-                value={slogan}
+                value={data.slogan}
                 placeholder='Slogan'
                 onChange={handleChangeInput}
               />
@@ -136,16 +113,18 @@ function App() {
                 name='repo'
                 id='repo'
                 placeholder='Repo'
-                onChange={handleBlurUrl}
+                value = {data.repo}
+                onChange={handleChangeInput}
               />
+              {message ? "" : <p>{message}</p>  }
               <input
                 className='input'
                 type='text'
                 placeholder='Demo'
                 name='demo'
                 id='demo'
-                value={demo}
-                onBlur={handleBlurUrl}
+                value={data.demo}
+                onChange={handleChangeInput}
               />
               <input
                 className='input'
@@ -153,7 +132,7 @@ function App() {
                 placeholder='Tecnologías'
                 name='technologies'
                 id='technologies'
-                value={tech}
+                value={data.technologies}
                 onChange={handleChangeInput}
               />
               <textarea
@@ -162,7 +141,7 @@ function App() {
                 placeholder='Descripción'
                 name='desc'
                 id='desc'
-                value={desc}
+                value={data.desc}
                 onChange={handleChangeInput}
               ></textarea>
             </fieldset>
