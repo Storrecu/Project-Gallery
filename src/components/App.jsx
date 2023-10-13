@@ -182,7 +182,7 @@ function App() {
                 value={data.name}
                 onChange={handleChangeInput}
               />
-              {nameErrorMsg && <p className="error-msg">{nameErrorMsg}</p>}
+              {nameErrorMsg ? <p className="error-msg">{nameErrorMsg}</p> : ''}
               <input
                 className="input"
                 type="text"
@@ -192,7 +192,11 @@ function App() {
                 placeholder="Slogan"
                 onChange={handleChangeInput}
               />
-              {sloganErrorMsg && <p className="error-msg">{sloganErrorMsg}</p>}
+              {sloganErrorMsg ? (
+                <p className="error-msg">{sloganErrorMsg}</p>
+              ) : (
+                ''
+              )}
               <input
                 className="input"
                 type="text"
@@ -202,7 +206,11 @@ function App() {
                 value={data.repo}
                 onChange={handleChangeInput}
               />
-              {urlOneErrorMsg && <p className="error-msg">{urlOneErrorMsg}</p>}
+              {urlOneErrorMsg ? (
+                <p className="error-msg">{urlOneErrorMsg}</p>
+              ) : (
+                ''
+              )}
               <input
                 className="input"
                 type="text"
@@ -212,7 +220,11 @@ function App() {
                 value={data.demo}
                 onChange={handleChangeInput}
               />
-              {urlTwoErrorMsg && <p className="error-msg">{urlTwoErrorMsg}</p>}
+              {urlTwoErrorMsg ? (
+                <p className="error-msg">{urlTwoErrorMsg}</p>
+              ) : (
+                ''
+              )}
               <input
                 className="input"
                 type="text"
@@ -222,8 +234,10 @@ function App() {
                 value={data.technologies}
                 onChange={handleChangeInput}
               />
-              {technologiesErrorMsg && (
+              {technologiesErrorMsg ? (
                 <p className="error-msg">{technologiesErrorMsg}</p>
+              ) : (
+                ''
               )}
               <textarea
                 className="textarea"
@@ -234,7 +248,7 @@ function App() {
                 value={data.desc}
                 onChange={handleChangeInput}
               ></textarea>
-              {descErrorMsg && <p className="error-msg">{descErrorMsg}</p>}
+              {descErrorMsg ? <p className="error-msg">{descErrorMsg}</p> : ''}
             </fieldset>
 
             <section className="ask-info">
@@ -252,7 +266,11 @@ function App() {
                 value={authorData.autor}
                 onChange={handleAuthorInput}
               />
-              {authorErrorMsg && <p className="error-msg">{authorErrorMsg}</p>}
+              {authorErrorMsg ? (
+                <p className="error-msg">{authorErrorMsg}</p>
+              ) : (
+                ''
+              )}
               <input
                 className="input"
                 type="text"
@@ -262,7 +280,7 @@ function App() {
                 value={authorData.job}
                 onChange={handleAuthorInput}
               />
-              {jobErrorMsg && <p className="error-msg">{jobErrorMsg}</p>}
+              {jobErrorMsg ? <p className="error-msg">{jobErrorMsg}</p> : ''}
             </fieldset>
 
             <section className="buttons-img">
