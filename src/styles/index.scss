@@ -224,3 +224,21 @@
 .hidden {
   display: none;
 }
+
+@media screen and (max-width: 768px) {
+  .main .preview,
+  .main .form{
+    width: 100%;
+  }
+
+  .main .input
+    .textarea{
+      width: 100%;
+    }
+
+  .main .btn,
+  .main .btn-large{
+    width: 100%;
+  }
+  
+}
