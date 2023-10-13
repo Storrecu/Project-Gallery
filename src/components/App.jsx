@@ -1,19 +1,18 @@
 /* eslint-disable react/jsx-no-target-blank */
-// Fichero src/components/App.jsx
 import { useState } from 'react';
 import '../styles/App.scss';
 import imgUser from '../images/user.jpeg';
 import imgCover from '../images/cover.jpeg';
 
 function App() {
-  //constantes de estado
+  //States
   const [data, setData] = useState({
     name: '',
     slogan: '',
     repo: '',
     demo: '',
     technologies: '',
-    desc: '',
+    description: '',
   });
 
   const [authorData, setAuthorData] = useState({
@@ -21,53 +20,102 @@ function App() {
     job: '',
   });
 
-  const [message, setMessage] = useState(''); // mensaje error URL
-  const [errorMsg, setErrorMsg] = useState(''); // mensaje error formulario
-  const [authorError, setAuthorError] = useState(''); //mensaje error parte autor
+  //Error states
+  const [urlOneErrorMsg, setUrlEOnerrorMsg] = useState('');
+  const [urlTwoErrorMsg, setUrlTwoErrorMsg] = useState('');
+  const [nameErrorMsg, setNameErrorMsg] = useState('');
+  const [sloganErrorMsg, setSloganErrorMsg] = useState('');
+  const [technologiesErrorMsg, setTechnologiesErrorMsg] = useState('');
+  const [descErrorMsg, setDescErrorMsg] = useState('');
+  const [authorErrorMsg, setAuthorErrorMsg] = useState('');
+  const [jobErrorMsg, setJobErrorMsg] = useState('');
 
-  //otras constantes: ExpReg
+  //RegExp
   const expRegUrl =
     /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,})(\/[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]*)*$/;
 
-  const patron =
-    /^[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ.-]+$/;
+  const patron = /^[ A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ-]+$/;
 
-  //funciones manejadoras
+  // Handlers
   const handleChangeInput = (event) => {
     const id = event.target.id;
     const value = event.target.value;
-    ///condiconal? si el imput id es demo o repo llamar a la funcion validate
-    if (id === data.demo || id === data.repo) {
-      validateUrl();
-    }
-    setData({ ...data, [id]: value });
-    //Aqui llamaremos a otra función para validar los otros inputs
-  };
 
-  //funciones para validar inputs del formulario y del autor
-  const validateUrl = (url) => {
-    if (expRegUrl.test(url)) {
-      if (url.includes('https://')) {
-        setMessage('');
+    if (id === 'name') {
+      setNameErrorMsg(!value ? 'Este campo es requerido' : '');
+    } else if (id === 'slogan') {
+      setSloganErrorMsg(!value ? 'Este campo es requerido' : '');
+    } else if (id === 'technologies') {
+      setTechnologiesErrorMsg(!value ? 'Este campo es requerido' : '');
+    } else if (id === 'desc') {
+      setDescErrorMsg(!value ? 'Este campo es requerido' : '');
+    } else if (id === 'repo') {
+      if (!expRegUrl.test(value)) {
+        setUrlEOnerrorMsg(
+          value
+            ? 'La URL ingresada no es válida, debes incluir una URL completa con https://'
+            : ''
+        );
+      } else {
+        setUrlEOnerrorMsg('');
+        validateUrl(value);
       }
-    } else {
-      setMessage('oye y el protocolo???');
+    } else if (id === 'demo') {
+      if (!expRegUrl.test(value)) {
+        setUrlTwoErrorMsg(
+          value
+            ? 'La URL ingresada no es válida, debes incluir una URL completa con https://'
+            : ''
+        );
+      } else {
+        setUrlTwoErrorMsg('');
+        validateUrl(value);
+      }
     }
+
+    setData({ ...data, [id]: value });
   };
 
   const handleAuthorInput = (event) => {
     const id = event.target.id;
     const value = event.target.value;
+
+    if (id === 'autor') {
+      setAuthorErrorMsg(
+        !patron.test(value)
+          ? 'El nombre del autor no es válido, no puede contener números ni carácteres especiales'
+          : ''
+      );
+    } else if (id === 'job') {
+      setJobErrorMsg(
+        !patron.test(value)
+          ? 'El trabajo del autor no es válido, no puede contener números ni carácteres especiales'
+          : ''
+      );
+    }
+
     setAuthorData({ ...authorData, [id]: value });
   };
 
-  // const validateInputs = (event) => {
-  //   // const id = event.target.id;
-  //   // const value = event.target.value;
-  //   // if(id === data.name || id === data.slogan || id === data.technologies || id === data.desc) {
-
-  //   }
-  // }
+  //functions
+  const validateUrl = (url) => {
+    if (expRegUrl.test(url)) {
+      if (!url.startsWith('https://')) {
+        setUrlEOnerrorMsg(
+          'Debes ingresar una URL completa, que comience con https://'
+        );
+        setUrlTwoErrorMsg(
+          'Debes ingresar una URL completa, que comience con https://'
+        );
+      } else {
+        setUrlEOnerrorMsg('');
+        setUrlTwoErrorMsg('');
+      }
+    } else {
+      setUrlTwoErrorMsg('La URL ingresada no es válida');
+      setUrlEOnerrorMsg('La URL ingresada no es válida');
+    }
+  };
 
   return (
     <>
@@ -134,7 +182,7 @@ function App() {
                 value={data.name}
                 onChange={handleChangeInput}
               />
-              {errorMsg ? '' : <p>{errorMsg}</p>}
+              {nameErrorMsg && <p className="error-msg">{nameErrorMsg}</p>}
               <input
                 className="input"
                 type="text"
@@ -144,7 +192,7 @@ function App() {
                 placeholder="Slogan"
                 onChange={handleChangeInput}
               />
-              {errorMsg ? '' : <p>{errorMsg}</p>}
+              {sloganErrorMsg && <p className="error-msg">{sloganErrorMsg}</p>}
               <input
                 className="input"
                 type="text"
@@ -154,7 +202,7 @@ function App() {
                 value={data.repo}
                 onChange={handleChangeInput}
               />
-              {message ? '' : <p>{message}</p>}
+              {urlOneErrorMsg && <p className="error-msg">{urlOneErrorMsg}</p>}
               <input
                 className="input"
                 type="text"
@@ -164,7 +212,7 @@ function App() {
                 value={data.demo}
                 onChange={handleChangeInput}
               />
-              {message ? '' : <p>{message}</p>}
+              {urlTwoErrorMsg && <p className="error-msg">{urlTwoErrorMsg}</p>}
               <input
                 className="input"
                 type="text"
@@ -174,7 +222,9 @@ function App() {
                 value={data.technologies}
                 onChange={handleChangeInput}
               />
-              {errorMsg ? '' : <p>{errorMsg}</p>}
+              {technologiesErrorMsg && (
+                <p className="error-msg">{technologiesErrorMsg}</p>
+              )}
               <textarea
                 className="textarea"
                 type="text"
@@ -184,7 +234,7 @@ function App() {
                 value={data.desc}
                 onChange={handleChangeInput}
               ></textarea>
-              {errorMsg ? '' : <p>{errorMsg}</p>}
+              {descErrorMsg && <p className="error-msg">{descErrorMsg}</p>}
             </fieldset>
 
             <section className="ask-info">
@@ -202,7 +252,7 @@ function App() {
                 value={authorData.autor}
                 onChange={handleAuthorInput}
               />
-              {authorError ? '' : <p>{authorError}</p>}
+              {authorErrorMsg && <p className="error-msg">{authorErrorMsg}</p>}
               <input
                 className="input"
                 type="text"
@@ -212,7 +262,7 @@ function App() {
                 value={authorData.job}
                 onChange={handleAuthorInput}
               />
-              {authorError ? '' : <p>{authorError}</p>}
+              {jobErrorMsg && <p className="error-msg">{jobErrorMsg}</p>}
             </fieldset>
 
             <section className="buttons-img">
