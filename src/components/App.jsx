@@ -1,7 +1,7 @@
 // Fichero src/components/App.jsx
 import '../styles/App.scss';
-import imgUser from '../images/user.jpeg';
-import imgCover from '../images/cover.jpeg';
+import imgUser from '../images/hierbas.webp';
+import imgCover from '../images/playa.jpg';
 
 function App() {
   return (
