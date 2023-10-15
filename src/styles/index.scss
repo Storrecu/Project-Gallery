@@ -3,11 +3,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .error-msg {
-  color: red;
+  color: darkblue;
 }
 
 .container {
@@ -30,7 +30,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     font-size: 2rem;
   }
 }
@@ -43,8 +43,8 @@
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    justify-content: center;  
-    align-items: flex-start;  
+    justify-content: center;
+    align-items: flex-start;
     gap: 20px;
     margin-top: 20px;
   }
@@ -76,7 +76,6 @@
   );
 }
 
-
 .main .form {
   //background-color: maroon;
   padding: 20px;
@@ -90,8 +89,6 @@
     margin-left: 0;
   }
 }
-
-
 
 .main .project,
 .main .autor {
@@ -144,7 +141,6 @@
   border: solid 2px white;
 }
 
-
 .main .preview {
   display: flex;
   flex-direction: column;
@@ -179,7 +175,7 @@
   padding: 20px;
   align-items: center;
   //overflow-y: scroll;
-  
+
   @media screen and (min-width: 768px) {
     margin: 0;
     max-width: 80%;
@@ -194,7 +190,7 @@
 
 .info-autor .image {
   border-radius: 20%;
- // width: 80px;
+  // width: 80px;
   height: 80px;
 }
 
@@ -208,9 +204,9 @@
   font-size: 16px;
 }
 
-.info-project {
-  //width: 60%;
-}
+// .info-project {
+//   width: 60%;
+// }
 
 .info-project .subtitle {
   font-size: 14px;
@@ -276,5 +272,3 @@
 .hidden {
   display: none;
 }
-
-
