@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useState } from 'react';
 import '../styles/App.scss';
-import imgUser from '../images/hierbas.webp';
-import imgCover from '../images/playa.jpg';
+import Header from './Header';
+import Footer from './Footer';
+import CardPreview from './proyecto/CardPreview';
+import Form from './proyecto/Form';
 
 function App() {
   //States
@@ -12,12 +14,13 @@ function App() {
     repo: '',
     demo: '',
     technologies: '',
-    description: '',
-  });
-
-  const [authorData, setAuthorData] = useState({
+    desc: '',
+    image:
+      'https://www.vets4pets.com/siteassets/species/cat/kitten/tiny-kitten-in-sunlight.jpg?w=585&scale=down',
     autor: '',
     job: '',
+    photo:
+      'https://www.vets4pets.com/siteassets/species/cat/kitten/tiny-kitten-in-sunlight.jpg?w=585&scale=down',
   });
 
   //Error states
@@ -29,6 +32,8 @@ function App() {
   const [descErrorMsg, setDescErrorMsg] = useState('');
   const [authorErrorMsg, setAuthorErrorMsg] = useState('');
   const [jobErrorMsg, setJobErrorMsg] = useState('');
+  const [cardMsg, setCardMsg] = useState('');
+  const [cardURL, setCardURL] = useState('');
 
   //RegExp
   const expRegUrl =
@@ -94,7 +99,26 @@ function App() {
       );
     }
 
-    setAuthorData({ ...authorData, [id]: value });
+    setData({ ...data, [id]: value });
+  };
+
+  const handleCreateCard = () => {
+    fetch('https://dev.adalab.es/api/projectCard', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((pepino) => {
+        console.log(pepino);
+        console.log(data);
+        if (pepino.success === false) {
+          setCardMsg('Algo ha ido mal');
+        } else {
+          setCardURL(pepino.cardURL);
+          setCardMsg(`Tu tarjeta ha sido creada:`);
+        }
+      });
   };
 
   //functions
@@ -120,185 +144,12 @@ function App() {
   return (
     <>
       <div className="container">
-        <header className="header">
-          <p className="text">Proyectos Molones</p>
-        </header>
+        <Header />
         <main className="main">
-          <section className="preview">
-            <img className="image" src={imgCover} alt="" />
-
-            <section className="autor">
-              <section className="info-project">
-                <p className="subtitle">Personal Project Card</p>
-                <hr className="line" />
-
-                <h2 className="title">{data.name || 'Elegant Workspace'}</h2>
-                <p className="slogan">{data.slogan || 'Diseños Exclusivos'}</p>
-                <p className="desc">
-                  {data.desc ||
-                    'Lorem, ipsum dolor sit amet consectetur adipisicing elit.Libero, delectus'}
-                </p>
-                <section className="technologies">
-                  <p className="text">
-                    {data.technologies || 'React JS, MongoDB'}
-                  </p>
-                </section>
-                <a href={data.demo} target="_blank">
-                  <i className="fa-solid fa-globe"></i>
-                </a>
-
-                <a href={data.repo} target="_blank">
-                  <i className="fa-brands fa-github"></i>
-                </a>
-              </section>
-
-              <section className="info-autor">
-                <img className="image" src={imgUser} alt="" />
-                <p className="job">
-                  {authorData.job || 'Full Stack Developer'}
-                </p>
-                <p className="name">
-                  {authorData.autor || 'Emmelie Björklund'}
-                </p>
-              </section>
-            </section>
-          </section>
-
-          <section className="form">
-            <h2 className="title">Información</h2>
-
-            <section className="ask-info">
-              <p className="subtitle">Cuéntanos sobre el proyecto</p>
-              <hr className="line" />
-            </section>
-
-            <fieldset className="project">
-              <input
-                className="input"
-                type="text"
-                placeholder="Nombre del proyecto"
-                name="name"
-                id="name"
-                value={data.name}
-                onChange={handleChangeInput}
-              />
-              {nameErrorMsg ? <p className="error-msg">{nameErrorMsg}</p> : ''}
-              <input
-                className="input"
-                type="text"
-                name="slogan"
-                id="slogan"
-                value={data.slogan}
-                placeholder="Slogan"
-                onChange={handleChangeInput}
-              />
-              {sloganErrorMsg ? (
-                <p className="error-msg">{sloganErrorMsg}</p>
-              ) : (
-                ''
-              )}
-              <input
-                className="input"
-                type="text"
-                name="repo"
-                id="repo"
-                placeholder="Repo"
-                value={data.repo}
-                onChange={handleChangeInput}
-              />
-              {urlOneErrorMsg ? (
-                <p className="error-msg">{urlOneErrorMsg}</p>
-              ) : (
-                ''
-              )}
-              <input
-                className="input"
-                type="text"
-                placeholder="Demo"
-                name="demo"
-                id="demo"
-                value={data.demo}
-                onChange={handleChangeInput}
-              />
-              {urlTwoErrorMsg ? (
-                <p className="error-msg">{urlTwoErrorMsg}</p>
-              ) : (
-                ''
-              )}
-              <input
-                className="input"
-                type="text"
-                placeholder="Tecnologías"
-                name="technologies"
-                id="technologies"
-                value={data.technologies}
-                onChange={handleChangeInput}
-              />
-              {technologiesErrorMsg ? (
-                <p className="error-msg">{technologiesErrorMsg}</p>
-              ) : (
-                ''
-              )}
-              <textarea
-                className="textarea"
-                type="text"
-                placeholder="Descripción"
-                name="desc"
-                id="desc"
-                value={data.desc}
-                onChange={handleChangeInput}
-              ></textarea>
-              {descErrorMsg ? <p className="error-msg">{descErrorMsg}</p> : ''}
-            </fieldset>
-
-            <section className="ask-info">
-              <p className="subtitle">Cuéntanos sobre la autora</p>
-              <hr className="line" />
-            </section>
-
-            <fieldset className="autor">
-              <input
-                className="input"
-                type="text"
-                placeholder="Nombre"
-                name="autor"
-                id="autor"
-                value={authorData.autor}
-                onChange={handleAuthorInput}
-              />
-              {authorErrorMsg ? (
-                <p className="error-msg">{authorErrorMsg}</p>
-              ) : (
-                ''
-              )}
-              <input
-                className="input"
-                type="text"
-                placeholder="Trabajo"
-                name="job"
-                id="job"
-                value={authorData.job}
-                onChange={handleAuthorInput}
-              />
-              {jobErrorMsg ? <p className="error-msg">{jobErrorMsg}</p> : ''}
-            </fieldset>
-
-            <section className="buttons-img">
-              <button className="btn">Subir foto de proyecto</button>
-              <button className="btn">Subir foto de autora</button>
-            </section>
-            <section className="buttons-img">
-              <button className="btn-large">Crear Tarjeta</button>
-            </section>
-
-            <section className="card">
-              <span className=""> La tarjeta ha sido creada: </span>
-              <a href="" className="" target="_blank" rel="noreferrer">
-                {' '}
-              </a>
-            </section>
-          </section>
+          <CardPreview />
+          <Form />
         </main>
+        <Footer />
       </div>
     </>
   );
