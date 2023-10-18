@@ -2,13 +2,12 @@
 import { useState } from 'react';
 import '../styles/App.scss';
 import Header from './Header';
-import Footer from './Footer';
-import CardPreview from './proyecto/CardPreview';
 import Form from './proyecto/Form';
+import CardPreview from './proyecto/CardPreview';
 import GetAvatar from './proyecto/GetAvatar';
 import Profile from './proyecto/Profile';
-
-
+import Footer from './Footer';
+import ls from '../services/localStorage';
 
 function App() {
   //States
@@ -19,16 +18,16 @@ function App() {
     demo: '',
     technologies: '',
     desc: '',
-    image:
-      'https://www.vets4pets.com/siteassets/species/cat/kitten/tiny-kitten-in-sunlight.jpg?w=585&scale=down',
     autor: '',
     job: '',
-    photo:
-      'https://www.vets4pets.com/siteassets/species/cat/kitten/tiny-kitten-in-sunlight.jpg?w=585&scale=down',
+    image: 'src/images/playa.jpg', // foto proyecto
+    photo: 'src/images/hierbas.webp', // foto autora
   });
 
-  //msg/url states
+  //Img Update states
+  const [avatar, setAvatar] = useState(ls.get('userImage', ''));
 
+  //msg/url states
   const [cardMsg, setCardMsg] = useState('');
   const [cardURL, setCardURL] = useState('');
 
@@ -38,17 +37,18 @@ function App() {
 
   const patron = /^[ A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ-]+$/;
 
-
-  const [pepino, setPepino] = useState ({});
-
-   /*const handlePepino = () => {
-  }
-*/
+  //Msg error:
+  const [nameErrorMsg, setNameErrorMsg] = useState('');
+  const [sloganErrorMsg, setSloganErrorMsg] = useState('');
+  const [urlOneErrorMsg, setUrlOneErrorMsg] = useState('');
+  const [urlTwoErrorMsg, setUrlTwoErrorMsg] = useState('');
+  const [technologiesErrorMsg, setTechnologiesErrorMsg] = useState('');
+  const [descErrorMsg, setDescErrorMsg] = useState('');
+  const [authorErrorMsg, setAuthorErrorMsg] = useState('');
+  const [jobErrorMsg, setJobErrorMsg] = useState('');
 
   // Handlers
-
   const handleChangeInput = (input, value) => {
-
     if (input === 'name') {
       setNameErrorMsg(!value ? 'Este campo es requerido' : '');
     } else if (input === 'slogan') {
@@ -59,13 +59,13 @@ function App() {
       setDescErrorMsg(!value ? 'Este campo es requerido' : '');
     } else if (input === 'repo') {
       if (!expRegUrl.test(value)) {
-        setUrlEOnerrorMsg(
+        setUrlOneErrorMsg(
           value
             ? 'La URL ingresada no es válida, debes incluir una URL completa con https://'
             : ''
         );
       } else {
-        setUrlEOnerrorMsg('');
+        setUrlOneErrorMsg('');
         validateUrl(value);
       }
     } else if (input === 'demo') {
@@ -82,6 +82,27 @@ function App() {
     }
 
     setData({ ...data, [input]: value });
+  };
+
+  const handleAuthorInput = (event) => {
+    const id = event.target.id;
+    const value = event.target.value;
+
+    if (id === 'autor') {
+      setAuthorErrorMsg(
+        !patron.test(value)
+          ? 'El nombre del autor no es válido, no puede contener números ni carácteres especiales'
+          : ''
+      );
+    } else if (id === 'job') {
+      setJobErrorMsg(
+        !patron.test(value)
+          ? 'El trabajo del autor no es válido, no puede contener números ni carácteres especiales'
+          : ''
+      );
+    }
+
+    setData({ ...data, [id]: value });
   };
 
   const handleCreateCard = () => {
@@ -107,20 +128,25 @@ function App() {
   const validateUrl = (url) => {
     if (expRegUrl.test(url)) {
       if (!url.startsWith('https://')) {
-        setUrlEOnerrorMsg(
+        setUrlOneErrorMsg(
           'Debes ingresar una URL completa, que comience con https://'
         );
         setUrlTwoErrorMsg(
           'Debes ingresar una URL completa, que comience con https://'
         );
       } else {
-        setUrlEOnerrorMsg('');
+        setUrlOneErrorMsg('');
         setUrlTwoErrorMsg('');
       }
     } else {
       setUrlTwoErrorMsg('La URL ingresada no es válida');
-      setUrlEOnerrorMsg('La URL ingresada no es válida');
+      setUrlOneErrorMsg('La URL ingresada no es válida');
     }
+  };
+
+  const updateAvatar = (avatar) => {
+    setAvatar(avatar);
+    ls.set('userImage', avatar);
   };
 
   return (
@@ -128,10 +154,25 @@ function App() {
       <div className="container">
         <Header />
         <main className="main">
-          <CardPreview />
+          <CardPreview data={data} />
           <GetAvatar avatar={avatar} updateAvatar={updateAvatar} />
-      <Profile avatar={avatar} />
-          <Form handleChangeInput = {handleChangeInput} handleAuthorInput = {handleAuthorInput}/>
+          <Profile avatar={avatar} />
+          <Form
+            handleChangeInput={handleChangeInput}
+            handleAuthorInput={handleAuthorInput}
+            handleCreateCard={handleCreateCard}
+            data={data}
+            nameErrorMsg={nameErrorMsg}
+            sloganErrorMsg={sloganErrorMsg}
+            urlOneErrorMsg={urlOneErrorMsg}
+            urlTwoErrorMsg={urlTwoErrorMsg}
+            technologiesErrorMsg={technologiesErrorMsg}
+            descErrorMsg={descErrorMsg}
+            authorErrorMsg={authorErrorMsg}
+            jobErrorMsg={jobErrorMsg}
+            cardMsg={cardMsg}
+            cardURL={cardURL}
+          />
         </main>
         <Footer />
       </div>

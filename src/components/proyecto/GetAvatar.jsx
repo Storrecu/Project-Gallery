@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import defaultAvatar from '../images/defaultAvatar.png';
-import '../styles/GetAvatar.css';
-function GetAvatar({avatar=defaultAvatar, updateAvatar, text='Get avatar!'}) {
+import defaultAvatar from '../../images/hierbas.webp';
+import '../../styles/layout/GetAvatar.scss';
+function GetAvatar({
+  avatar = defaultAvatar,
+  updateAvatar,
+  // text = 'Get avatar!',
+}) {
   // creamos una propiedad de la clase que es la que vamos a usar en varios métodos para cargar la imagen
   // esto es un manejador de ficheros
   const fr = new FileReader();
@@ -48,7 +52,7 @@ function GetAvatar({avatar=defaultAvatar, updateAvatar, text='Get avatar!'}) {
   return (
     <div className="get-avatar">
       <label className="get-avatar__label">
-        {text}
+        {/* {text} */}
         <input
           type="file"
           ref={myFileField}
@@ -66,6 +70,6 @@ function GetAvatar({avatar=defaultAvatar, updateAvatar, text='Get avatar!'}) {
 GetAvatar.propTypes = {
   avatar: PropTypes.string,
   updateAvatar: PropTypes.func.isRequired,
-  text: PropTypes.string
+  text: PropTypes.string,
 };
 export default GetAvatar;

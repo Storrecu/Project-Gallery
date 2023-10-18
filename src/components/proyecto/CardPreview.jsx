@@ -1,10 +1,14 @@
-import imgUser from '../../images/hierbas.webp';
-import imgCover from '../../images/playa.jpg';
+/* eslint-disable react/jsx-no-target-blank */
+import PropTypes from 'prop-types';
 
-const CardPreview = () => {
+const CardPreview = ({ data }) => {
   return (
     <section className="preview">
-      <img className="image" src={imgCover} alt="" />
+      <img
+        className="image"
+        src={data.image || '../../images/playa.jpg'}
+        alt=""
+      />
 
       <section className="autor">
         <section className="info-project">
@@ -30,12 +34,19 @@ const CardPreview = () => {
         </section>
 
         <section className="info-autor">
-          <img className="image" src={imgUser} alt="" />
+          <img
+            className="image"
+            src={data.photo || '../../images/hierbas.webp'}
+            alt=""
+          />
           <p className="job">{data.job || 'Full Stack Developer'}</p>
           <p className="name">{data.autor || 'Emmelie Björklund'}</p>
         </section>
       </section>
     </section>
   );
+};
+CardPreview.propTypes = {
+  data: PropTypes.object,
 };
 export default CardPreview;
