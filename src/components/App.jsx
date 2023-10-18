@@ -5,6 +5,10 @@ import Header from './Header';
 import Footer from './Footer';
 import CardPreview from './proyecto/CardPreview';
 import Form from './proyecto/Form';
+import GetAvatar from './proyecto/GetAvatar';
+import Profile from './proyecto/Profile';
+
+
 
 function App() {
   //States
@@ -23,15 +27,8 @@ function App() {
       'https://www.vets4pets.com/siteassets/species/cat/kitten/tiny-kitten-in-sunlight.jpg?w=585&scale=down',
   });
 
-  //Error states
-  const [urlOneErrorMsg, setUrlEOnerrorMsg] = useState('');
-  const [urlTwoErrorMsg, setUrlTwoErrorMsg] = useState('');
-  const [nameErrorMsg, setNameErrorMsg] = useState('');
-  const [sloganErrorMsg, setSloganErrorMsg] = useState('');
-  const [technologiesErrorMsg, setTechnologiesErrorMsg] = useState('');
-  const [descErrorMsg, setDescErrorMsg] = useState('');
-  const [authorErrorMsg, setAuthorErrorMsg] = useState('');
-  const [jobErrorMsg, setJobErrorMsg] = useState('');
+  //msg/url states
+
   const [cardMsg, setCardMsg] = useState('');
   const [cardURL, setCardURL] = useState('');
 
@@ -41,20 +38,26 @@ function App() {
 
   const patron = /^[ A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ-]+$/;
 
-  // Handlers
-  const handleChangeInput = (event) => {
-    const id = event.target.id;
-    const value = event.target.value;
 
-    if (id === 'name') {
+  const [pepino, setPepino] = useState ({});
+
+   /*const handlePepino = () => {
+  }
+*/
+
+  // Handlers
+
+  const handleChangeInput = (input, value) => {
+
+    if (input === 'name') {
       setNameErrorMsg(!value ? 'Este campo es requerido' : '');
-    } else if (id === 'slogan') {
+    } else if (input === 'slogan') {
       setSloganErrorMsg(!value ? 'Este campo es requerido' : '');
-    } else if (id === 'technologies') {
+    } else if (input === 'technologies') {
       setTechnologiesErrorMsg(!value ? 'Este campo es requerido' : '');
-    } else if (id === 'desc') {
+    } else if (input === 'desc') {
       setDescErrorMsg(!value ? 'Este campo es requerido' : '');
-    } else if (id === 'repo') {
+    } else if (input === 'repo') {
       if (!expRegUrl.test(value)) {
         setUrlEOnerrorMsg(
           value
@@ -65,7 +68,7 @@ function App() {
         setUrlEOnerrorMsg('');
         validateUrl(value);
       }
-    } else if (id === 'demo') {
+    } else if (input === 'demo') {
       if (!expRegUrl.test(value)) {
         setUrlTwoErrorMsg(
           value
@@ -78,28 +81,7 @@ function App() {
       }
     }
 
-    setData({ ...data, [id]: value });
-  };
-
-  const handleAuthorInput = (event) => {
-    const id = event.target.id;
-    const value = event.target.value;
-
-    if (id === 'autor') {
-      setAuthorErrorMsg(
-        !patron.test(value)
-          ? 'El nombre del autor no es válido, no puede contener números ni carácteres especiales'
-          : ''
-      );
-    } else if (id === 'job') {
-      setJobErrorMsg(
-        !patron.test(value)
-          ? 'El trabajo del autor no es válido, no puede contener números ni carácteres especiales'
-          : ''
-      );
-    }
-
-    setData({ ...data, [id]: value });
+    setData({ ...data, [input]: value });
   };
 
   const handleCreateCard = () => {
@@ -147,7 +129,9 @@ function App() {
         <Header />
         <main className="main">
           <CardPreview />
-          <Form />
+          <GetAvatar avatar={avatar} updateAvatar={updateAvatar} />
+      <Profile avatar={avatar} />
+          <Form handleChangeInput = {handleChangeInput} handleAuthorInput = {handleAuthorInput}/>
         </main>
         <Footer />
       </div>

@@ -1,4 +1,45 @@
-const Form = () => {
+const Form = ({ handleChangeInput, handleAuthorInput }) => {
+  const [urlOneErrorMsg, setUrlEOnerrorMsg] = useState('');
+  const [urlTwoErrorMsg, setUrlTwoErrorMsg] = useState('');
+  const [nameErrorMsg, setNameErrorMsg] = useState('');
+  const [sloganErrorMsg, setSloganErrorMsg] = useState('');
+  const [technologiesErrorMsg, setTechnologiesErrorMsg] = useState('');
+  const [descErrorMsg, setDescErrorMsg] = useState('');
+  const [authorErrorMsg, setAuthorErrorMsg] = useState('');
+  const [jobErrorMsg, setJobErrorMsg] = useState('');
+
+
+  const handleInput = (event) => {
+
+    const id = event.target.id;
+    const value = event.target.value;
+   
+
+
+  };
+
+  const handleAuthor = (event) => {
+    const id = event.target.id;
+    const value = event.target.value;
+
+    if (id === 'autor') {
+      setAuthorErrorMsg(
+        !patron.test(value)
+          ? 'El nombre del autor no es válido, no puede contener números ni carácteres especiales'
+          : ''
+      );
+    } else if (id === 'job') {
+      setJobErrorMsg(
+        !patron.test(value)
+          ? 'El trabajo del autor no es válido, no puede contener números ni carácteres especiales'
+          : ''
+      );
+    }
+
+    setData({ ...data, [id]: value });
+  };
+
+
   return (
     <section className="form">
       <h2 className="title">Información</h2>
@@ -16,7 +57,7 @@ const Form = () => {
           name="name"
           id="name"
           value={data.name}
-          onChange={handleChangeInput}
+          onChange={handleInput}
         />
         {nameErrorMsg ? <p className="error-msg">{nameErrorMsg}</p> : ''}
         <input
@@ -26,7 +67,7 @@ const Form = () => {
           id="slogan"
           value={data.slogan}
           placeholder="Slogan"
-          onChange={handleChangeInput}
+          onChange={handleInput}
         />
         {sloganErrorMsg ? <p className="error-msg">{sloganErrorMsg}</p> : ''}
         <input
@@ -36,7 +77,7 @@ const Form = () => {
           id="repo"
           placeholder="Repo"
           value={data.repo}
-          onChange={handleChangeInput}
+          onChange={handleInput}
         />
         {urlOneErrorMsg ? <p className="error-msg">{urlOneErrorMsg}</p> : ''}
         <input
@@ -46,7 +87,7 @@ const Form = () => {
           name="demo"
           id="demo"
           value={data.demo}
-          onChange={handleChangeInput}
+          onChange={handleInput}
         />
         {urlTwoErrorMsg ? <p className="error-msg">{urlTwoErrorMsg}</p> : ''}
         <input
@@ -56,7 +97,7 @@ const Form = () => {
           name="technologies"
           id="technologies"
           value={data.technologies}
-          onChange={handleChangeInput}
+          onChange={handleInput}
         />
         {technologiesErrorMsg ? (
           <p className="error-msg">{technologiesErrorMsg}</p>
@@ -70,7 +111,7 @@ const Form = () => {
           name="desc"
           id="desc"
           value={data.desc}
-          onChange={handleChangeInput}
+          onChange={handleInput}
         ></textarea>
         {descErrorMsg ? <p className="error-msg">{descErrorMsg}</p> : ''}
       </fieldset>
@@ -88,7 +129,7 @@ const Form = () => {
           name="autor"
           id="autor"
           value={data.autor}
-          onChange={handleAuthorInput}
+          onChange={handleAuthor}
         />
         {authorErrorMsg ? <p className="error-msg">{authorErrorMsg}</p> : ''}
         <input
@@ -98,7 +139,7 @@ const Form = () => {
           name="job"
           id="job"
           value={data.job}
-          onChange={handleAuthorInput}
+          onChange={handleAuthor}
         />
         {jobErrorMsg ? <p className="error-msg">{jobErrorMsg}</p> : ''}
       </fieldset>
