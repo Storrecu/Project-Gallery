@@ -23,6 +23,7 @@ function App() {
     image: 'src/images/playa.jpg', // foto proyecto
     photo: 'src/images/hierbas.webp', // foto autora
   });
+  const [inputForm, setInputForm] = useState('');
 
   //Img Update states
   const [avatar, setAvatar] = useState(ls.get('userImage', ''));
@@ -48,40 +49,41 @@ function App() {
   const [jobErrorMsg, setJobErrorMsg] = useState('');
 
   // Handlers
-  const handleChangeInput = (input, value) => {
-    if (input === 'name') {
-      setNameErrorMsg(!value ? 'Este campo es requerido' : '');
-    } else if (input === 'slogan') {
-      setSloganErrorMsg(!value ? 'Este campo es requerido' : '');
-    } else if (input === 'technologies') {
-      setTechnologiesErrorMsg(!value ? 'Este campo es requerido' : '');
-    } else if (input === 'desc') {
-      setDescErrorMsg(!value ? 'Este campo es requerido' : '');
-    } else if (input === 'repo') {
-      if (!expRegUrl.test(value)) {
+  const handleChangeInput = (id, value) => {
+    setInputForm(value);
+    if (id === 'name') {
+      setNameErrorMsg(!inputForm ? 'Este campo es requerido' : '');
+    } else if (id === 'slogan') {
+      setSloganErrorMsg(!inputForm ? 'Este campo es requerido' : '');
+    } else if (id === 'technologies') {
+      setTechnologiesErrorMsg(!inputForm ? 'Este campo es requerido' : '');
+    } else if (id === 'desc') {
+      setDescErrorMsg(!inputForm ? 'Este campo es requerido' : '');
+    } else if (id === 'repo') {
+      if (!expRegUrl.test(inputForm)) {
         setUrlOneErrorMsg(
-          value
+          inputForm
             ? 'La URL ingresada no es válida, debes incluir una URL completa con https://'
             : ''
         );
       } else {
         setUrlOneErrorMsg('');
-        validateUrl(value);
+        validateUrl(inputForm);
       }
-    } else if (input === 'demo') {
-      if (!expRegUrl.test(value)) {
+    } else if (id === 'demo') {
+      if (!expRegUrl.test(inputForm)) {
         setUrlTwoErrorMsg(
-          value
+          inputForm
             ? 'La URL ingresada no es válida, debes incluir una URL completa con https://'
             : ''
         );
       } else {
         setUrlTwoErrorMsg('');
-        validateUrl(value);
+        validateUrl(inputForm);
       }
     }
 
-    setData({ ...data, [input]: value });
+    setData({ ...data, [id]: inputForm });
   };
 
   const handleAuthorInput = (event) => {
@@ -151,9 +153,9 @@ function App() {
 
   return (
     <>
-      <div className="container">
+      <div className='container'>
         <Header />
-        <main className="main">
+        <main className='main'>
           <CardPreview data={data} />
           <GetAvatar avatar={avatar} updateAvatar={updateAvatar} />
           <Profile avatar={avatar} />
@@ -172,6 +174,7 @@ function App() {
             jobErrorMsg={jobErrorMsg}
             cardMsg={cardMsg}
             cardURL={cardURL}
+            inputForm={inputForm}
           />
         </main>
         <Footer />
