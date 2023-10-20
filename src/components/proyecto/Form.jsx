@@ -21,10 +21,7 @@ const Form = ({
 }) => {
   const handleChangeForm = (ev) => {
     handleChangeInput(ev.target.id, ev.target.value);
-    //pasar id
   };
-
-  //const handleAuthorInput = (event) => {};
 
   return (
     <section className="form">
