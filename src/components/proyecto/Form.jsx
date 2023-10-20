@@ -20,132 +20,131 @@ const Form = ({
   cardURL,
 }) => {
   const handleChangeForm = (ev) => {
-    handleChangeInput(ev.target.value);
+    handleChangeInput(ev.target.id, ev.target.value);
+    //pasar id
   };
 
   //const handleAuthorInput = (event) => {};
 
   return (
-    <section className='form'>
-      <h2 className='title'>Información</h2>
+    <section className="form">
+      <h2 className="title">Información</h2>
 
-      <section className='ask-info'>
-        <p className='subtitle'>Cuéntanos sobre el proyecto</p>
-        <hr className='line' />
+      <section className="ask-info">
+        <p className="subtitle">Cuéntanos sobre el proyecto</p>
+        <hr className="line" />
       </section>
 
-      <fieldset className='project'>
+      <fieldset className="project">
         <input
-          className='input'
-          type='text'
-          placeholder='Nombre del proyecto'
-          name='name'
-          id='name'
+          className="input"
+          type="text"
+          placeholder="Nombre del proyecto"
+          name="name"
+          id="name"
           value={data.name}
-          onChange={(event) => handleChangeForm('name', event.target.value)}
+          onChange={handleChangeForm}
         />
-        {nameErrorMsg ? <p className='error-msg'>{nameErrorMsg}</p> : ''}
+        {nameErrorMsg ? <p className="error-msg">{nameErrorMsg}</p> : ''}
         <input
-          className='input'
-          type='text'
-          name='slogan'
-          id='slogan'
+          className="input"
+          type="text"
+          name="slogan"
+          id="slogan"
           value={data.slogan}
-          placeholder='Slogan'
-          onChange={(event) => handleChangeForm('slogan', event.target.value)}
+          placeholder="Slogan"
+          onChange={handleChangeForm}
         />
-        {sloganErrorMsg ? <p className='error-msg'>{sloganErrorMsg}</p> : ''}
+        {sloganErrorMsg ? <p className="error-msg">{sloganErrorMsg}</p> : ''}
         <input
-          className='input'
-          type='text'
-          name='repo'
-          id='repo'
-          placeholder='Repo'
+          className="input"
+          type="text"
+          name="repo"
+          id="repo"
+          placeholder="Repo"
           value={data.repo}
-          onChange={(event) => handleChangeForm('repo', event.target.value)}
+          onChange={handleChangeForm}
         />
-        {urlOneErrorMsg ? <p className='error-msg'>{urlOneErrorMsg}</p> : ''}
+        {urlOneErrorMsg ? <p className="error-msg">{urlOneErrorMsg}</p> : ''}
         <input
-          className='input'
-          type='text'
-          placeholder='Demo'
-          name='demo'
-          id='demo'
+          className="input"
+          type="text"
+          placeholder="Demo"
+          name="demo"
+          id="demo"
           value={data.demo}
-          onChange={(event) => handleChangeForm('demo', event.target.value)}
+          onChange={handleChangeForm}
         />
-        {urlTwoErrorMsg ? <p className='error-msg'>{urlTwoErrorMsg}</p> : ''}
+        {urlTwoErrorMsg ? <p className="error-msg">{urlTwoErrorMsg}</p> : ''}
         <input
-          className='input'
-          type='text'
-          placeholder='Tecnologías'
-          name='technologies'
-          id='technologies'
+          className="input"
+          type="text"
+          placeholder="Tecnologías"
+          name="technologies"
+          id="technologies"
           value={data.technologies}
-          onChange={(event) =>
-            handleChangeForm('technologies', event.target.value)
-          }
+          onChange={handleChangeForm}
         />
         {technologiesErrorMsg ? (
-          <p className='error-msg'>{technologiesErrorMsg}</p>
+          <p className="error-msg">{technologiesErrorMsg}</p>
         ) : (
           ''
         )}
         <textarea
-          className='textarea'
-          type='text'
-          placeholder='Descripción'
-          name='desc'
-          id='desc'
+          className="textarea"
+          type="text"
+          placeholder="Descripción"
+          name="desc"
+          id="desc"
           value={data.desc}
-          onChange={(event) => handleChangeForm('desc', event.target.value)}
+          onChange={handleChangeForm}
         ></textarea>
-        {descErrorMsg ? <p className='error-msg'>{descErrorMsg}</p> : ''}
+        {descErrorMsg ? <p className="error-msg">{descErrorMsg}</p> : ''}
       </fieldset>
 
-      <section className='ask-info'>
-        <p className='subtitle'>Cuéntanos sobre la autora</p>
-        <hr className='line' />
+      <section className="ask-info">
+        <p className="subtitle">Cuéntanos sobre la autora</p>
+        <hr className="line" />
       </section>
 
-      <fieldset className='autor'>
+      <fieldset className="autor">
         <input
-          className='input'
-          type='text'
-          placeholder='Nombre'
-          name='autor'
-          id='autor'
+          className="input"
+          type="text"
+          placeholder="Nombre"
+          name="autor"
+          id="autor"
           value={data.autor}
           onChange={handleAuthorInput}
         />
-        {authorErrorMsg ? <p className='error-msg'>{authorErrorMsg}</p> : ''}
+        {authorErrorMsg ? <p className="error-msg">{authorErrorMsg}</p> : ''}
         <input
-          className='input'
-          type='text'
-          placeholder='Trabajo'
-          name='job'
-          id='job'
+          className="input"
+          type="text"
+          placeholder="Trabajo"
+          name="job"
+          id="job"
           value={data.job}
           onChange={handleAuthorInput}
         />
-        {jobErrorMsg ? <p className='error-msg'>{jobErrorMsg}</p> : ''}
+        {jobErrorMsg ? <p className="error-msg">{jobErrorMsg}</p> : ''}
       </fieldset>
 
-      <section className='buttons-img'>
-        <Button text='Subir foto de proyecto' className='btn' />
-        <Button text='Subir foto de autora' className='btn' />
+      <section className="buttons-img">
+        <Button text="Subir foto de proyecto" className="btn" />
+        <Button text="Subir foto de autora" className="btn" />
         {/* <button className="btn">Subir foto de proyecto</button>
         <button className="btn">Subir foto de autora</button> */}
       </section>
-      <section className='buttons-img'>
-        <button className='btn-large' onClick={handleCreateCard}>
+      <section className="buttons-img">
+        <button className="btn-large" onClick={handleCreateCard}>
           Crear Tarjeta
         </button>
       </section>
 
-      <section className='card'>
-        <span className=''>
-          <a target='_blank' href={cardURL}>
+      <section className="card">
+        <span className="">
+          <a target="_blank" href={cardURL}>
             {cardMsg} {cardURL}
           </a>
         </span>
