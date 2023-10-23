@@ -119,181 +119,185 @@ function App() {
 
   return (
     <>
-      <div className="container">
-        <header className="header">
-          <p className="text">Proyectos Molones</p>
+      <div className='container'>
+        <header className='header'>
+          <i className='header__icon fa-solid fa-computer'></i>
+          <h1 className='header__h1'>Proyectos Molones</h1>
+          <p className='header__text'>Escaparate en línea para recoger ideas a través de la tecnología.</p>
+          <button className='header__btn'>Ver proyectos</button>
         </header>
-        <main className="main">
-          <section className="preview">
-            <img className="image" src={imgCover} alt="" />
+        <main className='main'>
+          <section className='preview'>
+            <img className='image' src={imgCover} alt='' />
 
-            <section className="autor">
-              <section className="info-project">
-                <p className="subtitle">Personal Project Card</p>
-                <hr className="line" />
+            <section className='autor'>
+              <section className='info-project'>
+                <p className='subtitle'>Personal Project Card</p>
+                <hr className='line' />
 
-                <h2 className="title">{data.name || 'Elegant Workspace'}</h2>
-                <p className="slogan">{data.slogan || 'Diseños Exclusivos'}</p>
-                <p className="desc">
+                <h2 className='title'>{data.name || 'Elegant Workspace'}</h2>
+                <p className='slogan'>{data.slogan || 'Diseños Exclusivos'}</p>
+                <p className='desc'>
                   {data.desc ||
                     'Lorem, ipsum dolor sit amet consectetur adipisicing elit.Libero, delectus'}
                 </p>
-                <section className="technologies">
-                  <p className="text">
+                <section className='technologies'>
+                  <p className='text'>
                     {data.technologies || 'React JS, MongoDB'}
                   </p>
                 </section>
-                <a href={data.demo} target="_blank">
-                  <i className="fa-solid fa-globe"></i>
-                </a>
-
-                <a href={data.repo} target="_blank">
-                  <i className="fa-brands fa-github"></i>
-                </a>
+                <div className='icon-preview'>
+                  <a href={data.demo} target='_blank'>
+                    <i className='fa-solid fa-globe'></i>
+                  </a>
+                  <a href={data.repo} target='_blank'>
+                    <i className='fa-brands fa-github'></i>
+                  </a>
+                </div>
               </section>
 
-              <section className="info-autor">
-                <img className="image" src={imgUser} alt="" />
-                <p className="job">
+              <section className='info-autor'>
+                <img className='image' src={imgUser} alt='' />
+                <p className='job'>
                   {authorData.job || 'Full Stack Developer'}
                 </p>
-                <p className="name">
+                <p className='name'>
                   {authorData.autor || 'Emmelie Björklund'}
                 </p>
               </section>
             </section>
           </section>
 
-          <section className="form">
-            <h2 className="title">Información</h2>
+          <section className='form'>
+            <h2 className='title'>Información</h2>
 
-            <section className="ask-info">
-              <p className="subtitle">Cuéntanos sobre el proyecto</p>
-              <hr className="line" />
+            <section className='ask-info'>
+              <p className='subtitle'>Cuéntanos sobre el proyecto</p>
+              <hr className='line' />
             </section>
 
-            <fieldset className="project">
+            <fieldset className='project'>
               <input
-                className="input"
-                type="text"
-                placeholder="Nombre del proyecto"
-                name="name"
-                id="name"
+                className='input'
+                type='text'
+                placeholder='Nombre del proyecto'
+                name='name'
+                id='name'
                 value={data.name}
                 onChange={handleChangeInput}
               />
-              {nameErrorMsg ? <p className="error-msg">{nameErrorMsg}</p> : ''}
+              {nameErrorMsg ? <p className='error-msg'>{nameErrorMsg}</p> : ''}
               <input
-                className="input"
-                type="text"
-                name="slogan"
-                id="slogan"
+                className='input'
+                type='text'
+                name='slogan'
+                id='slogan'
                 value={data.slogan}
-                placeholder="Slogan"
+                placeholder='Slogan'
                 onChange={handleChangeInput}
               />
               {sloganErrorMsg ? (
-                <p className="error-msg">{sloganErrorMsg}</p>
+                <p className='error-msg'>{sloganErrorMsg}</p>
               ) : (
                 ''
               )}
               <input
-                className="input"
-                type="text"
-                name="repo"
-                id="repo"
-                placeholder="Repo"
+                className='input'
+                type='text'
+                name='repo'
+                id='repo'
+                placeholder='Repo'
                 value={data.repo}
                 onChange={handleChangeInput}
               />
               {urlOneErrorMsg ? (
-                <p className="error-msg">{urlOneErrorMsg}</p>
+                <p className='error-msg'>{urlOneErrorMsg}</p>
               ) : (
                 ''
               )}
               <input
-                className="input"
-                type="text"
-                placeholder="Demo"
-                name="demo"
-                id="demo"
+                className='input'
+                type='text'
+                placeholder='Demo'
+                name='demo'
+                id='demo'
                 value={data.demo}
                 onChange={handleChangeInput}
               />
               {urlTwoErrorMsg ? (
-                <p className="error-msg">{urlTwoErrorMsg}</p>
+                <p className='error-msg'>{urlTwoErrorMsg}</p>
               ) : (
                 ''
               )}
               <input
-                className="input"
-                type="text"
-                placeholder="Tecnologías"
-                name="technologies"
-                id="technologies"
+                className='input'
+                type='text'
+                placeholder='Tecnologías'
+                name='technologies'
+                id='technologies'
                 value={data.technologies}
                 onChange={handleChangeInput}
               />
               {technologiesErrorMsg ? (
-                <p className="error-msg">{technologiesErrorMsg}</p>
+                <p className='error-msg'>{technologiesErrorMsg}</p>
               ) : (
                 ''
               )}
               <textarea
-                className="textarea"
-                type="text"
-                placeholder="Descripción"
-                name="desc"
-                id="desc"
+                className='textarea'
+                type='text'
+                placeholder='Descripción'
+                name='desc'
+                id='desc'
                 value={data.desc}
                 onChange={handleChangeInput}
               ></textarea>
-              {descErrorMsg ? <p className="error-msg">{descErrorMsg}</p> : ''}
+              {descErrorMsg ? <p className='error-msg'>{descErrorMsg}</p> : ''}
             </fieldset>
 
-            <section className="ask-info">
-              <p className="subtitle">Cuéntanos sobre la autora</p>
-              <hr className="line" />
+            <section className='ask-info'>
+              <p className='subtitle'>Cuéntanos sobre la autora</p>
+              <hr className='line' />
             </section>
 
-            <fieldset className="autor">
+            <fieldset className='autor'>
               <input
-                className="input"
-                type="text"
-                placeholder="Nombre"
-                name="autor"
-                id="autor"
+                className='input'
+                type='text'
+                placeholder='Nombre'
+                name='autor'
+                id='autor'
                 value={authorData.autor}
                 onChange={handleAuthorInput}
               />
               {authorErrorMsg ? (
-                <p className="error-msg">{authorErrorMsg}</p>
+                <p className='error-msg'>{authorErrorMsg}</p>
               ) : (
                 ''
               )}
               <input
-                className="input"
-                type="text"
-                placeholder="Trabajo"
-                name="job"
-                id="job"
+                className='input'
+                type='text'
+                placeholder='Trabajo'
+                name='job'
+                id='job'
                 value={authorData.job}
                 onChange={handleAuthorInput}
               />
-              {jobErrorMsg ? <p className="error-msg">{jobErrorMsg}</p> : ''}
+              {jobErrorMsg ? <p className='error-msg'>{jobErrorMsg}</p> : ''}
             </fieldset>
 
-            <section className="buttons-img">
-              <button className="btn">Subir foto de proyecto</button>
-              <button className="btn">Subir foto de autora</button>
+            <section className='buttons-img'>
+              <button className='btn'>Subir foto de proyecto</button>
+              <button className='btn'>Subir foto de autora</button>
             </section>
-            <section className="buttons-img">
-              <button className="btn-large">Crear Tarjeta</button>
+            <section className='buttons-img'>
+              <button className='btn-large'>Crear Tarjeta</button>
             </section>
 
-            <section className="card">
-              <span className=""> La tarjeta ha sido creada: </span>
-              <a href="" className="" target="_blank" rel="noreferrer">
+            <section className='card'>
+              <span className=''> La tarjeta ha sido creada: </span>
+              <a href='' className='' target='_blank' rel='noreferrer'>
                 {' '}
               </a>
             </section>
