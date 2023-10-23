@@ -4,7 +4,7 @@ import Button from '../Button';
 
 const Form = ({
   handleChangeInput,
-  inputForm,
+  // inputForm,
   handleAuthorInput,
   handleCreateCard,
   data,

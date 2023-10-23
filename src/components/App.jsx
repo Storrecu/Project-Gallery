@@ -23,7 +23,7 @@ function App() {
     image: 'src/images/playa.jpg', // foto proyecto
     photo: 'src/images/hierbas.webp', // foto autora
   });
-  const [inputForm, setInputForm] = useState('');
+  // const [inputForm, setInputForm] = useState('');
 
   //Img Update states
   const [avatar, setAvatar] = useState(ls.get('userImage', ''));
@@ -50,40 +50,40 @@ function App() {
 
   // Handlers
   const handleChangeInput = (id, value) => {
-    setInputForm(value);
+    // setInputForm(value);
     if (id === 'name') {
-      setNameErrorMsg(!inputForm ? 'Este campo es requerido' : '');
+      setNameErrorMsg(!value ? 'Este campo es requerido' : '');
     } else if (id === 'slogan') {
-      setSloganErrorMsg(!inputForm ? 'Este campo es requerido' : '');
+      setSloganErrorMsg(!value ? 'Este campo es requerido' : '');
     } else if (id === 'technologies') {
-      setTechnologiesErrorMsg(!inputForm ? 'Este campo es requerido' : '');
+      setTechnologiesErrorMsg(!value ? 'Este campo es requerido' : '');
     } else if (id === 'desc') {
-      setDescErrorMsg(!inputForm ? 'Este campo es requerido' : '');
+      setDescErrorMsg(!value ? 'Este campo es requerido' : '');
     } else if (id === 'repo') {
-      if (!expRegUrl.test(inputForm)) {
+      if (!expRegUrl.test(value)) {
         setUrlOneErrorMsg(
-          inputForm
+          value
             ? 'La URL ingresada no es válida, debes incluir una URL completa con https://'
             : ''
         );
       } else {
         setUrlOneErrorMsg('');
-        validateUrl(inputForm);
+        validateUrl(value);
       }
     } else if (id === 'demo') {
-      if (!expRegUrl.test(inputForm)) {
+      if (!expRegUrl.test(value)) {
         setUrlTwoErrorMsg(
-          inputForm
+          value
             ? 'La URL ingresada no es válida, debes incluir una URL completa con https://'
             : ''
         );
       } else {
         setUrlTwoErrorMsg('');
-        validateUrl(inputForm);
+        validateUrl(value);
       }
     }
 
-    setData({ ...data, [id]: inputForm });
+    setData({ ...data, [id]: value });
   };
 
   const handleAuthorInput = (event) => {
@@ -153,9 +153,9 @@ function App() {
 
   return (
     <>
-      <div className='container'>
+      <div className="container">
         <Header />
-        <main className='main'>
+        <main className="main">
           <CardPreview data={data} />
           <GetAvatar avatar={avatar} updateAvatar={updateAvatar} />
           <Profile avatar={avatar} />
@@ -174,7 +174,7 @@ function App() {
             jobErrorMsg={jobErrorMsg}
             cardMsg={cardMsg}
             cardURL={cardURL}
-            inputForm={inputForm}
+            // inputForm={inputForm}
           />
         </main>
         <Footer />
