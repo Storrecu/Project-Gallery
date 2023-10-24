@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-target-blank */
 import { useEffect, useState } from 'react';
 import '../styles/App.scss';
