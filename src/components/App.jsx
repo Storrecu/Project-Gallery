@@ -10,21 +10,27 @@ import ls from '../services/localStorage';
 
 function App() {
   //States
-  const [data, setData] = useState({
-    name: '',
-    slogan: '',
-    repo: '',
-    demo: '',
-    technologies: '',
-    desc: '',
-    autor: '',
-    job: '',
-    image: 'src/images/hierbas.webp', // foto autora
-    photo: 'src/images/playa.jpg', // foto proyecto
+  const [data, setData] = useState(() => {
+    const savedData = ls.get('formData');
+    return savedData
+      ? JSON.parse(savedData)
+      : {
+          name: '',
+          slogan: '',
+          repo: '',
+          demo: '',
+          technologies: '',
+          desc: '',
+          autor: '',
+          job: '',
+          image: 'src/images/hierbas.webp', // foto autora
+          photo: 'src/images/playa.jpg', // foto proyecto
+        };
   });
 
   //Img Update states
   const [avatar, setAvatar] = useState('');
+  // const savedData = ls.get('formData');
 
   //msg/url states
   const [cardMsg, setCardMsg] = useState('');
@@ -36,17 +42,6 @@ function App() {
 
   const patron = /^[ A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ-]+$/;
 
-  //useEffect
-  // useEffect(() => {
-  //   const savedData = ls.get('formData');
-  //   if (savedData) {
-  //     const parsedData = JSON.parse(savedData);
-  //     setData(parsedData);
-  //   }
-  //   const dataString = JSON.stringify(data);
-  //   ls.set('formData', dataString);
-  // }, [data]);
-
   //Msg error:
   const [nameErrorMsg, setNameErrorMsg] = useState('');
   const [sloganErrorMsg, setSloganErrorMsg] = useState('');
@@ -57,8 +52,38 @@ function App() {
   const [authorErrorMsg, setAuthorErrorMsg] = useState('');
   const [jobErrorMsg, setJobErrorMsg] = useState('');
 
+  //Effects
+  useEffect(() => {
+    // Al montar el componente, intentar cargar los datos desde localStorage
+    const savedData = ls.get('formData');
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      setData(parsedData);
+    }
+
+    // También cargar la imagen del usuario desde localStorage
+    const savedUserImage = ls.get('userImage');
+    if (savedUserImage) {
+      setAvatar(savedUserImage);
+    }
+
+    // Establecer el evento de antes de descargar para guardar en localStorage
+    const saveData = () => {
+      const dataString = JSON.stringify(data);
+      ls.set('formData', dataString);
+    };
+    window.addEventListener('beforeunload', saveData);
+
+    // Limpiar el evento al desmontar el componente
+    return () => {
+      window.removeEventListener('beforeunload', saveData);
+    };
+  }, []);
+
   // Handlers
   const handleChangeInput = (id, value) => {
+    let newData = { ...data, [id]: value };
+
     if (id === 'name') {
       setNameErrorMsg(!value ? 'Este campo es requerido' : '');
     } else if (id === 'slogan') {
@@ -91,7 +116,10 @@ function App() {
       }
     }
 
-    setData({ ...data, [id]: value });
+    setData(newData);
+
+    // Guardar en localStorage
+    ls.set('formData', JSON.stringify(newData));
   };
 
   const handleAuthorInput = (event) => {
@@ -123,8 +151,6 @@ function App() {
     })
       .then((response) => response.json())
       .then((pepino) => {
-        console.log(pepino);
-        console.log(data);
         if (pepino.success === false) {
           setCardMsg('Algo ha ido mal');
         } else {
