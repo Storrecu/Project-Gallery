@@ -2,11 +2,16 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useEffect, useState } from 'react';
 import '../styles/App.scss';
+// import Landing from '../landing/Landing';
 import Header from './Header';
 import Form from './proyecto/Form';
 import CardPreview from './proyecto/CardPreview';
 import Footer from './Footer';
 import ls from '../services/localStorage';
+import { Route, Routes } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { matchPath } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function App() {
   //States
@@ -163,8 +168,28 @@ function App() {
     <>
       <div className="container">
         <Header />
-        <main className="main">
+        <Routes>
+
+        
+        <Route
+        path='/'
+        element={
+          <>
+            <main className="main">
           <CardPreview data={data} avatar={avatar} />
+        
+        </main>
+          
+          </>
+
+        }
+        
+        />
+        <Route
+        path='/form'
+        element={
+          <>
+          <main className='main'  >
           <Form
             handleChangeInput={handleChangeInput}
             handleAuthorInput={handleAuthorInput}
@@ -181,7 +206,18 @@ function App() {
             cardMsg={cardMsg}
             cardURL={cardURL}
           />
-        </main>
+          <Link className='header__btn'  to='/' > Volver al inicio </Link>
+          </main>
+          
+          </>
+        }
+        
+        
+        />
+        
+        </Routes>
+
+      
         <Footer />
       </div>
     </>
