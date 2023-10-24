@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const Button = ({ text, className, selectedFiles }) => {
+const Button = ({ text, className }) => {
   const handleFileChange = (event) => {
     const files = event.target.files;
     selectedFiles(files);
