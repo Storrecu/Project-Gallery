@@ -168,6 +168,7 @@ function App() {
     <>
       <div className="container">
         <Header />
+       
         <Routes>
 
         
@@ -177,7 +178,10 @@ function App() {
           <>
             <main className="main">
           <CardPreview data={data} avatar={avatar} />
-        
+          <Link className='header__btn' to='/form'
+        >
+      Ver proyectos
+      </Link>
         </main>
           
           </>

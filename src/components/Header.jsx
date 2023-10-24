@@ -9,10 +9,10 @@ const Header = () => {
         Escaparate en línea para recoger ideas a través de la tecnología.
       </p>
       {/* <button className='header__btn'>Ver proyectos</button> */}
-      <Link className='header__btn' to='/form'
+      {/* <Link className='header__btn' to='/form'
         >
       Ver proyectos
-      </Link>
+      </Link> */}
     </header>
   );
 };
