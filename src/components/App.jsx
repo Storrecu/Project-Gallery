@@ -179,8 +179,6 @@ function App() {
             jobErrorMsg={jobErrorMsg}
             cardMsg={cardMsg}
             cardURL={cardURL}
-            avatar={avatar}
-            updateAvatar={updateAvatar}
           />
         </main>
         <Footer />

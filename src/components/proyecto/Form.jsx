@@ -17,8 +17,6 @@ const Form = ({
   jobErrorMsg,
   cardMsg,
   cardURL,
-  avatar,
-  updateAvatar,
 }) => {
   const handleChangeForm = (ev) => {
     handleChangeInput(ev.target.id, ev.target.value);
