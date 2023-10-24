@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
 import PropTypes from 'prop-types';
-import Button from '../Button';
 
 const Form = ({
   handleChangeInput,
@@ -128,8 +127,8 @@ const Form = ({
       </fieldset>
 
       <section className="buttons-img">
-        <Button text="Subir foto de proyecto" className="btn" />
-        <Button text="Subir foto de autora" className="btn" />
+        {/*<Button text="Subir foto de proyecto" className="btn" />
+        <Button text="Subir foto de autora" className="btn" />*/}
         {/* <button className="btn">Subir foto de proyecto</button>
         <button className="btn">Subir foto de autora</button> */}
       </section>
