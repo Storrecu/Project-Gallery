@@ -1,11 +1,9 @@
 /* eslint-disable react/jsx-no-target-blank */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/App.scss';
 import Header from './Header';
 import Form from './proyecto/Form';
 import CardPreview from './proyecto/CardPreview';
-import GetAvatar from './proyecto/GetAvatar';
-import Profile from './proyecto/Profile';
 import Footer from './Footer';
 import ls from '../services/localStorage';
 
@@ -20,13 +18,12 @@ function App() {
     desc: '',
     autor: '',
     job: '',
-    image: 'src/images/playa.jpg', // foto proyecto
-    photo: 'src/images/hierbas.webp', // foto autora
+    image: 'src/images/hierbas.webp', // foto autora
+    photo: 'src/images/playa.jpg', // foto proyecto
   });
-  // const [inputForm, setInputForm] = useState('');
 
   //Img Update states
-  const [avatar, setAvatar] = useState(ls.get('userImage', ''));
+  const [avatar, setAvatar] = useState('');
 
   //msg/url states
   const [cardMsg, setCardMsg] = useState('');
@@ -37,6 +34,17 @@ function App() {
     /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,})(\/[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]*)*$/;
 
   const patron = /^[ A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ-]+$/;
+
+  //useEffect
+  // useEffect(() => {
+  //   const savedData = ls.get('formData');
+  //   if (savedData) {
+  //     const parsedData = JSON.parse(savedData);
+  //     setData(parsedData);
+  //   }
+  //   const dataString = JSON.stringify(data);
+  //   ls.set('formData', dataString);
+  // }, [data]);
 
   //Msg error:
   const [nameErrorMsg, setNameErrorMsg] = useState('');
@@ -50,7 +58,6 @@ function App() {
 
   // Handlers
   const handleChangeInput = (id, value) => {
-    // setInputForm(value);
     if (id === 'name') {
       setNameErrorMsg(!value ? 'Este campo es requerido' : '');
     } else if (id === 'slogan') {
@@ -156,9 +163,7 @@ function App() {
       <div className="container">
         <Header />
         <main className="main">
-          <CardPreview data={data} />
-          <GetAvatar avatar={avatar} updateAvatar={updateAvatar} />
-          <Profile avatar={avatar} />
+          <CardPreview data={data} avatar={avatar} />
           <Form
             handleChangeInput={handleChangeInput}
             handleAuthorInput={handleAuthorInput}
@@ -174,7 +179,8 @@ function App() {
             jobErrorMsg={jobErrorMsg}
             cardMsg={cardMsg}
             cardURL={cardURL}
-            // inputForm={inputForm}
+            avatar={avatar}
+            updateAvatar={updateAvatar}
           />
         </main>
         <Footer />

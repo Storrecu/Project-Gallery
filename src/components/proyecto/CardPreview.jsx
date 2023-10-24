@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-no-target-blank */
 import PropTypes from 'prop-types';
 
-const CardPreview = ({ data }) => {
+const CardPreview = ({ data, avatar }) => {
   return (
     <section className="preview">
       <img
         className="image"
-        src={data.image || '../../images/playa.jpg'}
+        src={data.photo || '../../images/playa.jpg'}
         alt=""
       />
 
@@ -36,7 +36,7 @@ const CardPreview = ({ data }) => {
         <section className="info-autor">
           <img
             className="image"
-            src={data.photo || '../../images/hierbas.webp'}
+            src={data.image || '../../images/hierbas.webp'}
             alt=""
           />
           <p className="job">{data.job || 'Full Stack Developer'}</p>
