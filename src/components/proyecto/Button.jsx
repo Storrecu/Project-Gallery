@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 
 const Button = ({ text, className }) => {
-  const handleFileChange = (event) => {
-    const files = event.target.files;
-    selectedFiles(files);
-  };
+  // const handleFileChange = (event) => {
+  //   const files = event.target.files;
+  //   selectedFiles(files);
+  // };
 
   return (
     <div>
       <input
         className={className}
         type="file"
-        onChange={handleFileChange}
+        // onChange={handleFileChange}
         multiple
       />
       <button className={className}>{text}</button>
