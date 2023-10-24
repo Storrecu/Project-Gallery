@@ -30,7 +30,6 @@ function App() {
 
   //Img Update states
   const [avatar, setAvatar] = useState('');
-  // const savedData = ls.get('formData');
 
   //msg/url states
   const [cardMsg, setCardMsg] = useState('');
@@ -78,6 +77,7 @@ function App() {
     return () => {
       window.removeEventListener('beforeunload', saveData);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handlers
