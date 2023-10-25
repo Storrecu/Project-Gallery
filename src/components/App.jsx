@@ -71,13 +71,6 @@ function App() {
       const dataString = JSON.stringify(data);
       ls.set('formData', dataString);
     };
-    window.addEventListener('beforeunload', saveData);
-
-    // Limpiar el evento al desmontar el componente
-    return () => {
-      window.removeEventListener('beforeunload', saveData);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handlers
