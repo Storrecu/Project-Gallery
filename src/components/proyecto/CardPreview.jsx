@@ -37,7 +37,7 @@ const CardPreview = ({ data, avatar }) => {
         <section className='info-autor'>
           <img
             className='image'
-            src={data.photo || '../../images/hierbas.webp'}
+            src={data.image || '../../images/hierbas.webp'}
             alt=''
           />
           <p className='job'>{data.job || 'Full Stack Developer'}</p>
