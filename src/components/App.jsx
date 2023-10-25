@@ -65,12 +65,6 @@ function App() {
     if (savedUserImage) {
       setAvatar(savedUserImage);
     }
-
-    // Establecer el evento de antes de descargar para guardar en localStorage
-    const saveData = () => {
-      const dataString = JSON.stringify(data);
-      ls.set('formData', dataString);
-    };
   }, []);
 
   // Handlers
