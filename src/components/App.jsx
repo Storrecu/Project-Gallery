@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useEffect, useState } from 'react';
 import '../styles/App.scss';
-// import Landing from '../landing/Landing';
+import Landing from './landing/Landing';
 import Header from './Header';
 import Form from './proyecto/Form';
 import CardPreview from './proyecto/CardPreview';
@@ -190,13 +190,7 @@ function App() {
         path='/'
         element={
           <>
-            <main className="main">
-          <CardPreview data={data} avatar={avatar} />
-          <Link className='header__btn' to='/form'
-        >
-      Ver proyectos
-      </Link>
-        </main>
+         <Landing/>
           
           </>
 
