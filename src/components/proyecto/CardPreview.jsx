@@ -5,8 +5,9 @@ const CardPreview = ({ data, avatar }) => {
   return (
     <section className='preview'>
       <img
-        className='image'
-        src={data.photo || '../../images/playa.jpg'}
+        className='image_leaves'
+         src={data.photo || '../../images/2.jpg'}
+        // src={data.photo || '../../images/playa.jpg'}
         alt=''
       />
 

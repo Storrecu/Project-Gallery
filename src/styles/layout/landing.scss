@@ -1,0 +1,30 @@
+.main_landing {
+    
+    height: 100vh;
+    background-image: url('../../images/hojasluminosas.jpg');
+    background-size: cover;
+    background-position: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+@media screen and (min-width: 736px) {
+   .main_landing{
+    background-position: 80%;
+   }
+  }
+ 
+  .section_landing {
+    height: 300px;
+    width: 100pxpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+
+  }
+
+

@@ -12,6 +12,8 @@ import { Route, Routes } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { matchPath } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import Proyects from './Proyects';
+import GetAvatar from './proyecto/GetAvatar';
 
 
 function App() {
@@ -21,17 +23,20 @@ function App() {
     return savedData
       ? JSON.parse(savedData)
       : {
-          name: '',
-          slogan: '',
-          repo: '',
-          demo: '',
-          technologies: '',
-          desc: '',
-          autor: '',
-          job: '',
-          image: 'src/images/hierbas.webp', // foto autora
-          photo: 'src/images/playa.jpg', // foto proyecto
-        };
+        name: '',
+        slogan: '',
+        repo: '',
+        demo: '',
+        technologies: '',
+        desc: '',
+        autor: '',
+        job: '',
+        image: 'src/images/hierbas.webp', 
+        // foto autora
+        photo: 'src/images/2.jpg', 
+        // photo: 'src/images/playa.jpg', 
+        // foto proyecto
+      };
   });
 
   //Img Update states
@@ -181,56 +186,76 @@ function App() {
   return (
     <>
       <div className="container">
-        <Header />
-       
+        
+
         <Routes>
+          <Route
+            path='/'
+            element={
+              <>
+                <Landing />
 
-        
-        <Route
-        path='/'
-        element={
-          <>
-         <Landing/>
-          
-          </>
+              </>
 
-        }
-        
-        />
-        <Route
-        path='/form'
-        element={
-          <>
-          <main className='main'  >
-          <Form
-            handleChangeInput={handleChangeInput}
-            handleAuthorInput={handleAuthorInput}
-            handleCreateCard={handleCreateCard}
-            data={data}
-            nameErrorMsg={nameErrorMsg}
-            sloganErrorMsg={sloganErrorMsg}
-            urlOneErrorMsg={urlOneErrorMsg}
-            urlTwoErrorMsg={urlTwoErrorMsg}
-            technologiesErrorMsg={technologiesErrorMsg}
-            descErrorMsg={descErrorMsg}
-            authorErrorMsg={authorErrorMsg}
-            jobErrorMsg={jobErrorMsg}
-            cardMsg={cardMsg}
-            cardURL={cardURL}
+            }
+
           />
-          <Link className='header__btn'  to='/' > Volver al inicio </Link>
-          </main>
-          
-          </>
-        }
-        
-        
-        />
-        
+          <Route
+            path='/proyects'
+            element={
+              <>
+              <Header />
+                <Proyects />
+                
+                <Footer />
+
+              </>
+
+            }
+
+
+
+          />
+          <Route
+            path='/form'
+            element={
+              <>
+                <Header />
+                <main className='main'  >
+                  <CardPreview
+                    data={data}
+                    avatar={avatar}
+                  />
+                  <Form
+                    handleChangeInput={handleChangeInput}
+                    handleAuthorInput={handleAuthorInput}
+                    handleCreateCard={handleCreateCard}
+                    data={data}
+                    nameErrorMsg={nameErrorMsg}
+                    sloganErrorMsg={sloganErrorMsg}
+                    urlOneErrorMsg={urlOneErrorMsg}
+                    urlTwoErrorMsg={urlTwoErrorMsg}
+                    technologiesErrorMsg={technologiesErrorMsg}
+                    descErrorMsg={descErrorMsg}
+                    authorErrorMsg={authorErrorMsg}
+                    jobErrorMsg={jobErrorMsg}
+                    cardMsg={cardMsg}
+                    cardURL={cardURL}
+                  />
+                  <Link className='header__btn' to='/' > Volver al inicio </Link>
+                </main>
+                
+                <Footer />
+              </>
+            }
+
+
+          />
+
         </Routes>
 
-      
-        <Footer />
+
+
       </div>
     </>
   );
