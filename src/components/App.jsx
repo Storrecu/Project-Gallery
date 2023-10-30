@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useEffect, useState } from 'react';
 import '../styles/App.scss';
+
 import Landing from './landing/Landing';
 import Header from './Header';
 import Form from './proyecto/Form';
@@ -205,7 +206,9 @@ function App() {
             element={
               <>
               <Header />
-                <Proyects />
+                <Proyects 
+
+                />
                 
                 <Footer />
 
