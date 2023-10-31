@@ -19,20 +19,21 @@
   justify-content: center;
   flex-wrap: wrap;
   align-items: baseline;
+  
   @media screen and (min-width: 768px) {
     padding-inline: 5rem;
   }
 
   &__icon {
     color: aliceblue;
-    margin-right: 10px;
+
     @media screen and (min-width: 768px) {
       font-size: 1.5rem;
-      margin-right: 20px;
+      //margin-right: 20px;
     }
     @media screen and (min-width: 1024px) {
       font-size: 2rem;
-      margin-right: 20px;
+      //margin-right: 20px;
     }
   }
 
@@ -40,7 +41,7 @@
     color: aliceblue;
     font-size: 1.2rem;
     font-weight: bold;
-    margin-top: 2rem;
+    margin: 2rem 1rem 0.5rem 1rem;
     text-transform: uppercase;
     text-align: center;
 
@@ -73,6 +74,7 @@
     color: aliceblue;
     padding: 5px;
     border-radius: 20px;
+    margin-top: 500px;
   }
 }
 

@@ -11,13 +11,13 @@ const Proyects = () => {
          
       <section className='section_proyects' >
        {/* <a href="">Agregar nuevo proyecto</a> */}
-       <div className='btn_1_proyects' >
+       <div>
        <Link className='header__btn' to='/form'
         >
       Crea tu proyecto
       </Link>
        </div>
-       <div  className='btn_2_proyects'>
+       <div>
        <Link className='header__btn'  to='/' > Volver al inicio </Link>
        </div>
       
