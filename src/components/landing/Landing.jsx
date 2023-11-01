@@ -6,16 +6,16 @@ const Landing = () => {
   return (
     <>
       <div className='landing__div'>
-        <h1 className='header__h1'>Proyectos Molones</h1>
+        <h1 className='landing__h1'>Proyectos Molones</h1>
 
         <section className='landing__section'>
-          <Link className='header__btn' to='/proyects'>
+          <Link className='landing__btn' to='/projects'>
             Ver proyectos
           </Link>
 
           {/* <a href="">Agregar nuevo proyecto</a> */}
 
-          <Link className='header__btn' to='/form'>
+          <Link className='landing__btn' to='/form'>
             Crear proyectos
           </Link>
         </section>

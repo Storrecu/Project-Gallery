@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import defaultAvatar from '../../images/hierbas.webp';
+import defaultAvatar from '../../images/user.jpeg';
 import ls from '../../services/localStorage';
 import '../../styles/layout/GetAvatar.scss';
 function GetAvatar({ avatar = defaultAvatar, updateAvatar, text }) {
@@ -20,7 +20,7 @@ function GetAvatar({ avatar = defaultAvatar, updateAvatar, text }) {
 
   return (
     <div className="get-avatar">
-      <label className="get-avatar__label">
+      <label className="get-avatar__label" for="fileInput">
         <input
           className="input-btn"
           type="file"
@@ -29,10 +29,7 @@ function GetAvatar({ avatar = defaultAvatar, updateAvatar, text }) {
         />
         {text}
       </label>
-      <div
-        className="get-avatar__preview"
-        style={{ backgroundImage: `url(${avatar})` }}
-      ></div>
+      
     </div>
   );
 }

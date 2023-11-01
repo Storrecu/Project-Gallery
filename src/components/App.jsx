@@ -12,7 +12,7 @@ import { Route, Routes } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { matchPath } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import Proyects from './Proyects';
+import Projects from './Projects';
 import GetAvatar from './proyecto/GetAvatar';
 
 
@@ -31,7 +31,7 @@ function App() {
         desc: '',
         autor: '',
         job: '',
-        image: 'src/images/hierbas.webp', 
+        image: 'src/images/user.jpeg', 
         // foto autora
         photo: 'src/images/2.jpg', 
         // photo: 'src/images/playa.jpg', 
@@ -201,11 +201,11 @@ function App() {
 
           />
           <Route
-            path='/proyects'
+            path='/projects'
             element={
               <>
               <Header />
-                <Proyects />
+                <Projects />
                 
                 <Footer />
 

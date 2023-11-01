@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import defaultAvatar from '../../images/hierbas.webp';
+import defaultAvatar from '../../images/user.jpeg';
 import '../../styles/layout/Profile.scss';
 function Profile(props) {
   const avatar = props.avatar === '' ? defaultAvatar : props.avatar;

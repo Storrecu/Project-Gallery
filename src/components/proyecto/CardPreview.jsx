@@ -7,7 +7,6 @@ const CardPreview = ({ data, avatar }) => {
       <img
         className='image_leaves'
          src={data.photo || '../../images/2.jpg'}
-        // src={data.photo || '../../images/playa.jpg'}
         alt=''
       />
 
@@ -38,7 +37,7 @@ const CardPreview = ({ data, avatar }) => {
         <section className='info-autor'>
           <img
             className='image'
-            src={data.image || '../../images/hierbas.webp'}
+            src={data.image || '../../images/user.jpeg'}
             alt=''
           />
           <p className='job'>{data.job || 'Full Stack Developer'}</p>

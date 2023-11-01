@@ -3,7 +3,8 @@ import logo from '../images/logo-adalab.png';
 const Footer = () => {
   return (
     <footer className="footer">
-      {/* <img className='footer__logo' src={logo} alt="logo Adalab" /> */}
+      <i className='header__icon fa-solid fa-leaf'></i>
+      <img className='footer__logo' src={logo} alt="logo Adalab" />
     </footer>
   );
 };
