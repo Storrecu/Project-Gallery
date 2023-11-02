@@ -1,9 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/layout/Projects.scss';
-import CardPreview from './proyecto/CardPreview';
+import Card from './Card';
 
 const projects = () => {
+
+    const fakeData = {
+      name: 'proyect',
+      slogan: 'hola',
+      repo: '',
+      demo: '',
+      technologies: '',
+      desc: '',
+      autor: 'claudia',
+      job: 'babyfullstack',
+      image: 'src/images/hierbas.webp',
+      photo: 'src/images/2.jpg'
+
+    };
+
   return (
     <>
     
@@ -23,7 +38,7 @@ const projects = () => {
       
       </section>
      
-
+      <Card data={fakeData}/>
       
          </div>
     </>

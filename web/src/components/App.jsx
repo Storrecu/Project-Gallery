@@ -206,7 +206,7 @@ function App() {
             element={
               <>
               <Header />
-                <Proyects 
+                <Projects 
 
                 />
                 
