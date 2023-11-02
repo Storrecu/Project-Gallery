@@ -5,7 +5,7 @@ const Card = ({data}  )=> {
 
     return(
 
-       <main className="main" >
+       
          <section className='autor'>
         <section className='info-project'>
           <p className='subtitle'>Personal Project Card</p>
@@ -40,7 +40,7 @@ const Card = ({data}  )=> {
           <p className='name'>{data.autor || 'Emmelie Björklund'}</p>
         </section>
       </section>
-       </main>
+
     )
 
 }

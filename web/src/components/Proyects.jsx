@@ -15,38 +15,33 @@ const Proyects = () => {
     desc: '',
     autor: 'claudia',
     job: 'babyfullstack',
-    image: 'src/images/hierbas.webp', 
+    image: 'src/images/hierbas.webp',
     // foto autora
-    photo: 'src/images/2.jpg', 
-    // photo: 'src/images/playa.jpg', 
+    photo: 'src/images/2.jpg',
+    // photo: 'src/images/playa.jpg',
     // foto proyecto
   };
   return (
     <>
-
-      <main className="main_proyects">
-
-        <section className='section_proyects' >
+      <main className='main_proyects'>
+        <section className='section_proyects'>
           {/* <a href="">Agregar nuevo proyecto</a> */}
-          <div className='btn_1_proyects' >
-            <Link className='header__btn' to='/form'
-            >
+          <div className='btn_1_proyects'>
+            <Link className='header__btn' to='/form'>
               Crea tu proyecto
             </Link>
           </div>
           <div className='btn_2_proyects'>
-            <Link className='header__btn' to='/' > Volver al inicio </Link>
+            <Link className='header__btn' to='/'>
+              {' '}
+              Volver al inicio{' '}
+            </Link>
           </div>
-
         </section>
-       <Card
-        data= {fakeData}
-       />
-
-
-
-
-
+        <section className='preview'>
+        <Card data={fakeData} />
+        </section>
+        
       </main>
     </>
   );
@@ -54,12 +49,4 @@ const Proyects = () => {
 
 export default Proyects;
 
-
-
-
-
-
-
-
-
-0
+0;
