@@ -1,0 +1,118 @@
+.header {
+  background-color: #61c7ad;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: baseline;
+  position: relative;
+  @media screen and (min-width: 768px) {
+    padding-inline: 5rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding-inline: 8rem;
+  }
+  @media screen and (min-width: 1400px) {
+    padding-inline: 12rem;
+  }
+
+  &__icon {
+    color: aliceblue;
+    @media screen and (min-width: 768px) {
+      font-size: 1.5rem;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__h1 {
+    color: aliceblue;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 2rem 1rem 0.5rem 1rem;
+    text-transform: uppercase;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+      font-size: 2rem;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 3rem;
+    }
+    @media screen and (min-width: 1200px) {
+      font-size: 4rem;
+    }
+  }
+
+  &__text {
+    color: #292828;
+    margin: auto 10px 5px 10px;
+    text-align: center;
+    font-size: 14px;
+    @media screen and (min-width: 768px) {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    @media screen and (min-width: 1400px) {
+      font-size: 20px;
+      padding-inline: 10rem;
+    }
+  }
+
+  &__btn {
+    text-decoration: none;
+    background-color: #e18fcd;
+    color: aliceblue;
+    padding: 5px;
+    border-radius: 20px;
+    margin-top: 500px;
+  }
+}
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  position: absolute;
+  top: 0px;
+  left: 50px;
+  margin: 20px;
+}
+
+.menu-toggle {
+  background-color: transparent;
+  border: none;
+  color: #0b273b;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 30px;
+  @media all and (min-width: 768px) {
+    font-size: 24px;
+  }
+  @media all and (min-width: 1200px) {
+    font-size: 32px;
+  }
+}
+
+.navigation__btns-one,
+.navigation__btns-two,
+.navigation__btns-three {
+  text-decoration: none;
+  background-color: #e18fcd;
+  color: aliceblue;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.navigation__btns-one:hover,
+.navigation__btns-two:hover,
+.navigation__btns-three:hover {
+  background-color: #d075b5;
+}
