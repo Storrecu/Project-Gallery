@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/layout/Projects.scss';
 import Card from './Card';
 import api from '../services/api';
@@ -31,18 +30,9 @@ const projects = () => {
 
   return (
     <>
-      <div className='projects__div'>
-        <section className='projects__section'>
+      <div className="projects__div">
+        <section className="projects__section">
           {/* <a href="">Agregar nuevo proyecto</a> */}
-
-          <Link className='projects__btn' to='/form'>
-            Crea tu projecto
-          </Link>
-
-          <Link className='projects__btn' to='/'>
-            {' '}
-            Volver al inicio{' '}
-          </Link>
         </section>
         {listProject.map((project) => {
           return <Card data={project} />;
