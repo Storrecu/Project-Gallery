@@ -24,7 +24,7 @@ server.listen(port, () => {
 
 server.get('/project', async (req, res) => {
   const sql =
-    'SELECT user.iduser AS numUsuario, user.name AS nombrUsuario, user.image_user AS imagenUsuario ,project.idproject AS numProyecto, project.name_project AS nombreProyecto FROM user INNER JOIN project ON user.iduser = project.fk_user';
+    'SELECT user.name AS autor, user.image_user AS image , project.name_project AS name, project.slogan, project.repo, project.demo, project.tech, project.desc FROM user INNER JOIN project ON user.iduser = project.fk_user';
 
   const connection = await getConnection();
   const [results] = await connection.query(sql);
