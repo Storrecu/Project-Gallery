@@ -182,6 +182,22 @@ function App() {
     ls.set('userImage', avatar);
   };
 
+  const clearFormData = () => {
+    setData({
+      name: '',
+      slogan: '',
+      repo: '',
+      demo: '',
+      technologies: '',
+      desc: '',
+      autor: '',
+      job: '',
+      image: 'src/images/user.jpeg',
+      photo: 'src/images/2.jpg',
+    });
+    ls.remove('formData');
+  };
+
   return (
     <>
       <div className="container">
@@ -216,6 +232,7 @@ function App() {
                     handleChangeInput={handleChangeInput}
                     handleAuthorInput={handleAuthorInput}
                     handleCreateCard={handleCreateCard}
+                    clearFormData={clearFormData}
                     data={data}
                     nameErrorMsg={nameErrorMsg}
                     sloganErrorMsg={sloganErrorMsg}

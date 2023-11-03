@@ -6,6 +6,7 @@ const Form = ({
   handleChangeInput,
   handleAuthorInput,
   handleCreateCard,
+  clearFormData,
   data,
   nameErrorMsg,
   sloganErrorMsg,
@@ -20,6 +21,9 @@ const Form = ({
 }) => {
   const handleChangeForm = (ev) => {
     handleChangeInput(ev.target.id, ev.target.value);
+  };
+  const handleClearForm = () => {
+    clearFormData();
   };
 
   return (
@@ -144,6 +148,9 @@ const Form = ({
         <button className="btn-large" onClick={handleCreateCard}>
           Crear Tarjeta
         </button>
+        <button className="btn-large" onClick={handleClearForm}>
+          Limpiar Formulario
+        </button>
       </section>
 
       <section className="card">
@@ -153,7 +160,6 @@ const Form = ({
           </a>
         </span>
       </section>
-      
     </section>
   );
 };
@@ -161,6 +167,7 @@ Form.propTypes = {
   handleChangeInput: PropTypes.func,
   handleAuthorInput: PropTypes.func,
   handleCreateCard: PropTypes.func,
+  clearFormData: PropTypes.func,
   data: PropTypes.object,
   nameErrorMsg: PropTypes.string,
   sloganErrorMsg: PropTypes.string,
