@@ -12,10 +12,12 @@ import ls from '../services/localStorage';
 import { Route, Routes } from 'react-router-dom';
 import { matchPath } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+
 import Projects from './Projects';
 import GetAvatar from './proyecto/GetAvatar';
 
 function App() {
+  console.log('adasdasda');
   //States
   const [data, setData] = useState(() => {
     const savedData = ls.get('formData');

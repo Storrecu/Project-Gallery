@@ -4,17 +4,15 @@ import PropTypes from 'prop-types';
 import Card from '../Card';
 
 const CardPreview = ({ data }) => {
+  console.log('data >> ', data);
   return (
-    <section className='preview'>
+    <section className="preview">
       <img
-        className='image_leaves'
-         src={data.photo || './images/2.jpg'}
-        alt=''
+        className="image_leaves"
+        src={data.photo || './src/images/2.jpg'}
+        alt=""
       />
-    <Card
-    data={data}
-    />
-    
+      <Card data={data} />
     </section>
   );
 };

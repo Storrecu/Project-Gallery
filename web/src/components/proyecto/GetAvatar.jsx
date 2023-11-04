@@ -20,7 +20,7 @@ function GetAvatar({ avatar = defaultAvatar, updateAvatar, text }) {
 
   return (
     <div className="get-avatar">
-      <label className="get-avatar__label" for="fileInput">
+      <label className="get-avatar__label" htmlFor="fileInput">
         <input
           className="input-btn"
           type="file"
@@ -29,7 +29,6 @@ function GetAvatar({ avatar = defaultAvatar, updateAvatar, text }) {
         />
         {text}
       </label>
-      
     </div>
   );
 }

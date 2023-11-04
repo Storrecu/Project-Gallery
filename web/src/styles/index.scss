@@ -130,6 +130,10 @@
   text-transform: uppercase;
 }
 
+.btn-large:hover {
+  background: linear-gradient(90deg, rgb(199, 28, 199) -1.57%, #e18fcd 98.43%);
+}
+
 .main .preview {
   display: flex;
   flex-direction: column;
