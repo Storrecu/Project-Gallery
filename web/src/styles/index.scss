@@ -292,6 +292,9 @@
   color: aliceblue;
   text-align: center;
   padding: 20px;
+  &__url {
+    color: #61c7ad;
+  }
 }
 
 .hidden {

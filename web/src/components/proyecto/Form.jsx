@@ -155,7 +155,7 @@ const Form = ({
 
       <section className="card">
         <span className="">
-          <a target="_blank" href={cardURL}>
+          <a className=" card__url" target="_blank" href={cardURL}>
             {cardMsg} {cardURL}
           </a>
         </span>
