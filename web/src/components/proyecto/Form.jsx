@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import GetAvatar from './GetAvatar';
 
@@ -19,11 +20,15 @@ const Form = ({
   cardMsg,
   cardURL,
 }) => {
+  const [showCardMessage, setShowCardMessage] = useState(true);
+
   const handleChangeForm = (ev) => {
     handleChangeInput(ev.target.id, ev.target.value);
+    setShowCardMessage(true);
   };
   const handleClearForm = () => {
     clearFormData();
+    setShowCardMessage(false);
   };
 
   return (
@@ -154,11 +159,13 @@ const Form = ({
       </section>
 
       <section className="card">
-        <span className="">
-          <a className=" card__url" target="_blank" href={cardURL}>
-            {cardMsg} {cardURL}
-          </a>
-        </span>
+        {showCardMessage ? (
+          <span className="">
+            <a className="card__url" target="_blank" href={cardURL}>
+              {cardMsg} {cardURL}
+            </a>
+          </span>
+        ) : null}
       </section>
     </section>
   );
