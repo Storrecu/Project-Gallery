@@ -31,9 +31,11 @@ const projects = () => {
   return (
     <>
       <div className="projects__div">
+        {/* 
         <section className="projects__section">
-          {/* <a href="">Agregar nuevo proyecto</a> */}
+      <a href="">Agregar nuevo proyecto</a> 
         </section>
+      */}
         {listProject.map((project) => {
           return <Card data={project} />;
         })}
