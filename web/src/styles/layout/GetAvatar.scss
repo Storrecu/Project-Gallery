@@ -20,7 +20,7 @@
     height: 38px;
     padding-left: 15px;
     padding-top: 5px;
-    width: 100%; // Ocupar todo el ancho del contenedor
+    width: 100%;
 
     .input-btn {
       cursor: pointer;
@@ -33,6 +33,13 @@
     }
   }
 
+  .input-btn-text {
+    font-size: 14px;
+    @media all and (min-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
   .get-avatar__preview {
     background-color: aliceblue;
     background-position: center;
@@ -40,7 +47,7 @@
     background-size: cover;
     border: 1px solid aliceblue;
     height: 50px;
-    margin-top: 15px; // Ajustar el margen superior
+    margin-top: 15px;
     width: 50px;
   }
 }

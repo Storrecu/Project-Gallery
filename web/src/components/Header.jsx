@@ -22,7 +22,7 @@ const Header = () => {
           <i className="fa-solid fa-bars"></i>
         </button>
         {isMenuOpen ? (
-          <div className="dropdown-menu">
+          <section className={`menu-section ${isMenuOpen ? 'open' : ''}`}>
             <Link className="navigation__btns-one" to="/" onClick={toggleMenu}>
               Volver al inicio
             </Link>
@@ -40,7 +40,7 @@ const Header = () => {
             >
               Crea tu proyecto
             </Link>
-          </div>
+          </section>
         ) : null}
       </section>
     </header>

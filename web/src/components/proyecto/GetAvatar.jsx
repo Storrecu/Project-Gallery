@@ -27,7 +27,7 @@ function GetAvatar({ avatar = defaultAvatar, updateAvatar, text }) {
           ref={myFileField}
           onChange={uploadImage}
         />
-        {text}
+        <p className="input-btn-text">{text}</p>
       </label>
     </div>
   );
