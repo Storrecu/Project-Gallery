@@ -35,5 +35,34 @@ server.get('/project', async (req, res) => {
   });
 });
 
+server.post('/project', async (req, res) => {
+  const body = req.body;
+  //queries
+  let addAutor = `INSERT INTO user (name, job, image_user) VALUES ('?','?','?')`;
+  let addProject = `INSERT INTO project (name_project, slogan, repo, demo, tech, image_project) VALUES ('?','?','?','?','?','?')`;
+  //conexión
+  const connection = await getConnection();
+  //ejecutar query
+  const [resultData] = await conn.query(
+    addAutor,
+    addProject[(req.body.name, req.body.job, req.body.image_user)],
+    [
+      req.body.name_project,
+      req.body.slogan,
+      req.body.repo,
+      req.body.demo,
+      req.body.tech,
+      req.body.image_project,
+    ]
+  );
+  console.log(resultData); //.insertId
+
+  res.json({
+    success: true,
+    /*cardURL: `http://localhost:5173/#/projects/${resultData.insertId}`, */
+  });
+  connection.end();
+});
+
 const staticServerPath = './web/dist';
 server.use(express.static(staticServerPath));
