@@ -1,0 +1,42 @@
+.card-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25rem;
+    margin: auto;
+}
+
+.autor {
+    background-color: #e18fcd;
+    color: #292828;
+    justify-content: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 5px 15px;
+    align-items: center;
+    width: 38rem;
+    height: 18rem;
+}
+.image_leaves {
+    width: 300px;
+  
+  }
+.info-autor .image {
+  height: 12vh;
+  border-radius: 20px;
+
+}
+
+
+@media screen and (min-width: 768px) {
+    .info-autor .image {
+        height: 14vh;
+        margin: 10px;
+    }
+    .image_leaves{
+        width: 500px;
+
+    }
+   
+  }

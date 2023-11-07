@@ -2,9 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
 
+
 const server = express();
 server.use(cors());
 server.use(express.json({ limit: '25mb' }));
+server.set("view engine", "ejs");
 
 async function getConnection() {
   const connection = await mysql.createConnection({
@@ -17,7 +19,7 @@ async function getConnection() {
   return connection;
 }
 
-const port = 2001;
+const port = 2002;
 server.listen(port, () => {
   console.log('Holiii' + port);
 });
@@ -63,6 +65,23 @@ server.post('/project', async (req, res) => {
   });
   connection.end();
 });
+server.get('/project/:idproject', async (req, res)=> {
+  const id = req.params.idproject;
+  const selectProject =  'SELECT user.name AS autor, user.job, user.image_user AS image , project.name_project AS name, project.slogan, project.repo, project.demo, project.tech, project.desc, project.image_project AS photo FROM user INNER JOIN project ON user.iduser = project.fk_user WHERE idproject = ?';
+  const connection = await getConnection();
+  const [results]= await connection.query(selectProject, [id]);
+  if (results.length === 0) {
+    res.render("projectNotFound")
+  }else {
+    res.render ("detailProject", results [0])
+  }
+  connection.end();
+})
+
+
 
 const staticServerPath = './web/dist';
 server.use(express.static(staticServerPath));
+
+const pathServerPublicStyles = './src/public-css';
+server.use(express.static(pathServerPublicStyles));

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <img
+        class="image_leaves"
+        src= <%= photo %>
+        alt=""
+      />
+    <section class="card-preview">
+        <section class="autor">
+          <section class="info-project">
+            <p class="subtitle">Personal Project Card</p>
+            <hr class="line" />
+  
+            <h2 class="title"> <%= name %> </h2>
+            <p class="slogan">  <%= slogan %>  </p>
+            <p class="desc">
+                <%= desc %> 
+            </p>
+            <section class="technologies">
+              <p class="text"><%= tech %> </p>
+            </section>
+            <div class="icon-div">
+              <a class="icon-preview"  target="_blank" href=<%= demo %>  >
+                <i class="fa-solid fa-globe"></i>
+              </a>
+              <a class="icon-preview" target="_blank"  href= <%= repo %>
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </div>
+          </section>
+  
+          <section class="info-autor">
+            <img
+              class="image"
+              src= <%= image %> 
+              alt=""
+            />
+  
+            <p class="job"><%= job %> </p>
+            <p class="name"><%= autor %> </p>
+          </section>
+        </section>
+      </section>
+</body>
+</html>
