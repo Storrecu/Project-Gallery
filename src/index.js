@@ -2,11 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
 
-
 const server = express();
 server.use(cors());
 server.use(express.json({ limit: '25mb' }));
-server.set("view engine", "ejs");
+server.set('view engine', 'ejs');
 
 async function getConnection() {
   const connection = await mysql.createConnection({
@@ -37,48 +36,52 @@ server.get('/project', async (req, res) => {
   });
 });
 
-server.post('/project', async (req, res) => {
+server.post('/createproject', async (req, res) => {
   const body = req.body;
   //queries
-  let addAutor = `INSERT INTO user (name, job, image_user) VALUES ('?','?','?')`;
-  let addProject = `INSERT INTO project (name_project, slogan, repo, demo, tech, image_project) VALUES ('?','?','?','?','?','?')`;
+  let addAutor = `INSERT INTO user (autor, job, image_user) VALUES ('?','?','?')`;
+  let addProject = `INSERT INTO project (name_project, slogan, repo, demo, tech, desc, image_project) VALUES ('?','?','?','?','?','?','?')`;
   //conexión
   const connection = await getConnection();
   //ejecutar query
-  const [resultData] = await conn.query(
-    addAutor,
-    addProject[(req.body.name, req.body.job, req.body.image_user)],
-    [
-      req.body.name_project,
-      req.body.slogan,
-      req.body.repo,
-      req.body.demo,
-      req.body.tech,
-      req.body.image_project,
-    ]
-  );
-  console.log(resultData); //.insertId
+  const [resultAutor] = await conn.query(addAutor, [
+    body.autor,
+    body.job,
+    body.image_user,
+  ]);
 
+  if (resultUser.insertId) {
+    const [resultProject] = await conn.query(addProject, [
+      body.name_project,
+      body.slogan,
+      body.repo,
+      body.demo,
+      body.tech,
+      body.desc,
+      body.image_project,
+      resultAutor.insertId,
+    ]);
+  }
+  const insertId = resultAutor.insertId;
   res.json({
     success: true,
-    /*cardURL: `http://localhost:5173/#/projects/${resultData.insertId}`, */
+    cardURL: `http://localhost:2002/project/${resultAutor.insertId}`,
   });
-  connection.end();
 });
-server.get('/project/:idproject', async (req, res)=> {
+
+server.get('/project/:idproject', async (req, res) => {
   const id = req.params.idproject;
-  const selectProject =  'SELECT user.name AS autor, user.job, user.image_user AS image , project.name_project AS name, project.slogan, project.repo, project.demo, project.tech, project.desc, project.image_project AS photo FROM user INNER JOIN project ON user.iduser = project.fk_user WHERE idproject = ?';
+  const selectProject =
+    'SELECT user.name AS autor, user.job, user.image_user AS image , project.name_project AS name, project.slogan, project.repo, project.demo, project.tech, project.desc, project.image_project AS photo FROM user INNER JOIN project ON user.iduser = project.fk_user WHERE idproject = ?';
   const connection = await getConnection();
-  const [results]= await connection.query(selectProject, [id]);
+  const [results] = await connection.query(selectProject, [id]);
   if (results.length === 0) {
-    res.render("projectNotFound")
-  }else {
-    res.render ("detailProject", results [0])
+    res.render('projectNotFound');
+  } else {
+    res.render('detailProject', results[0]);
   }
   connection.end();
-})
-
-
+});
 
 const staticServerPath = './web/dist';
 server.use(express.static(staticServerPath));
