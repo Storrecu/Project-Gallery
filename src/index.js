@@ -38,20 +38,20 @@ server.get('/project', async (req, res) => {
 
 server.post('/createproject', async (req, res) => {
   const body = req.body;
-  //queries
-  let addAutor = `INSERT INTO user (autor, job, image_user) VALUES ('?','?','?')`;
-  let addProject = `INSERT INTO project (name_project, slogan, repo, demo, tech, desc, image_project) VALUES ('?','?','?','?','?','?','?')`;
-  //conexión
+  // Queries
+  let addAutor = `INSERT INTO user (autor, job, image_user) VALUES (?, ?, ?)`;
+  let addProject = `INSERT INTO project (name_project, slogan, repo, demo, tech, \`desc\`, image_project, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+  // Conexión
   const connection = await getConnection();
-  //ejecutar query
-  const [resultAutor] = await conn.query(addAutor, [
+  // Ejecutar query
+  const [resultAutor] = await connection.query(addAutor, [
     body.autor,
     body.job,
     body.image_user,
   ]);
 
-  if (resultUser.insertId) {
-    const [resultProject] = await conn.query(addProject, [
+  if (resultAutor.insertId) {
+    const [resultProject] = await connection.query(addProject, [
       body.name_project,
       body.slogan,
       body.repo,
@@ -61,12 +61,18 @@ server.post('/createproject', async (req, res) => {
       body.image_project,
       resultAutor.insertId,
     ]);
+
+    const insertId = resultAutor.insertId;
+    res.json({
+      success: true,
+      cardURL: `http://localhost:2002/project/${insertId}`,
+    });
+  } else {
+    res.json({
+      success: false,
+      message: 'Error al insertar en la tabla user.',
+    });
   }
-  const insertId = resultAutor.insertId;
-  res.json({
-    success: true,
-    cardURL: `http://localhost:2002/project/${resultAutor.insertId}`,
-  });
 });
 
 server.get('/project/:idproject', async (req, res) => {
