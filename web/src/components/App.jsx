@@ -142,36 +142,8 @@ function App() {
     setData({ ...data, [id]: value });
   };
 
-  // const handleCreateCard = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:2002/createproject', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         autor: 'Nombre del Autor',
-  //         job: 'Trabajo del Autor',
-  //         image_user: 'URL de la imagen del usuario',
-  //         name_project: 'Nombre del Proyecto',
-  //         slogan: 'Eslogan del Proyecto',
-  //         repo: 'URL del Repositorio',
-  //         demo: 'URL de la Demo',
-  //         tech: 'Tecnologías utilizadas',
-  //         desc: 'Descripción del Proyecto',
-  //         image_project: 'URL de la imagen del proyecto',
-  //       }),
-  //     });
-
-  //     const data = await response.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error('Error al añadir el proyecto:', error);
-  //   }
-  // };
-
   const handleCreateCard = () => {
-    fetch('https://dev.adalab.es/api/projectCard', {
+    fetch('http://localhost:2002/createproject', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
