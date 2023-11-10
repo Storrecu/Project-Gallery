@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import userImg from '../images/user.jpeg';
 const Card = ({ data }) => {
   return (
     <section className="card-preview">
@@ -27,11 +28,7 @@ const Card = ({ data }) => {
         </section>
 
         <section className="info-autor">
-          <img
-            className="image"
-            src={data.image || '../../images/user.jpeg'}
-            alt=""
-          />
+          <img className="image" src={data.image || userImg} alt="" />
 
           <p className="job">{data.job || 'Full Stack Developer'}</p>
           <p className="name">{data.autor || 'Emmelie Björklund'}</p>

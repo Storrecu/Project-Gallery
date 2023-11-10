@@ -124,8 +124,14 @@ server.get('/project/:idproject', async (req, res) => {
   connection.end();
 });
 
-const staticServerPath = './web/dist';
+// static server general used to be: ./web/dist
+const staticServerPath = './src/public-react';
 server.use(express.static(staticServerPath));
 
+//static server styles
 const pathServerPublicStyles = './src/public-css';
 server.use(express.static(pathServerPublicStyles));
+
+//statis server images
+const staticImagesServerthPath = './src/public-image';
+server.use(express.static(staticImagesServerthPath));
