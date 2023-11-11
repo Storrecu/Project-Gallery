@@ -1,42 +1,55 @@
-.card-preview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25rem;
-    margin: auto;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0b273b;
 }
 
-.autor {
-    background-color: #e18fcd;
-    color: #292828;
-    justify-content: center;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row-reverse;
-    padding: 5px 15px;
-    align-items: center;
-    width: 38rem;
-    height: 18rem;
+/* Sección tarjeta */
+.card-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  margin: auto;
+  z-index: 100;
+  position: absolute;
+  text-align: center;
 }
+
+.card-preview .autor {
+  background-color: #e18fcd;
+  color: #292828;
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 20px;
+  padding-block: 20px;
+  padding-inline: 22px;
+  margin-top: 110%;
+}
+
+/* sección imágen */
 .image_leaves {
-    width: 300px;
-  
-  }
+  width: 300px;
+  margin: auto;
+  position: relative;
+}
 .info-autor .image {
   height: 12vh;
   border-radius: 20px;
-
 }
 
-
+/* Media queries */
 @media screen and (min-width: 768px) {
-    .info-autor .image {
-        height: 14vh;
-        margin: 10px;
-    }
-    .image_leaves{
-        width: 500px;
-
-    }
-   
+  .info-autor .image {
+    height: 14vh;
+    margin: 10px;
   }
+  .image_leaves {
+    width: 500px;
+  }
+}
