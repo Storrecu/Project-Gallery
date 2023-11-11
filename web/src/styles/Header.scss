@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   position: relative;
+  z-index: 100;
   @media screen and (min-width: 768px) {
     padding-inline: 5rem;
   }
@@ -73,15 +74,6 @@
     margin-top: 500px;
   }
 }
-// .dropdown-menu {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 0.3rem;
-//   position: absolute;
-//   top: 0px;
-//   left: 50px;
-//   margin: 20px;
-// }
 
 .menu-toggle {
   background-color: transparent;
@@ -107,6 +99,7 @@
   width: 100%;
   background-color: #61c7ad;
   padding: 10px;
+  z-index: 100;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -118,6 +111,7 @@
   flex-direction: row;
   justify-content: center;
   border: 1px solid #e18fcd;
+  z-index: 100;
 }
 
 .navigation__btns-one,
