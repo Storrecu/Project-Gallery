@@ -14,16 +14,18 @@ const Card = ({ data }) => {
             {data.desc ||
               'Lorem, ipsum dolor sit amet consectetur adipisicing elit.Libero, delectus'}
           </p>
-          <section className="technologies">
-            <p className="text">{data.technologies || 'React JS, MongoDB'}</p>
-          </section>
-          <div className="icon-div">
-            <a className="icon-preview" href={data.demo} target="_blank">
-              <i className="fa-solid fa-globe"></i>
-            </a>
-            <a className="icon-preview" href={data.repo} target="_blank">
-              <i className="fa-brands fa-github"></i>
-            </a>
+          <div className="tech-icon-sec">
+            <section className="technologies">
+              <p className="text">{data.technologies || 'React JS, MongoDB'}</p>
+            </section>
+            <div className="icon-div">
+              <a className="icon-preview" href={data.demo} target="_blank">
+                <i className="fa-solid fa-globe"></i>
+              </a>
+              <a className="icon-preview" href={data.repo} target="_blank">
+                <i className="fa-brands fa-github"></i>
+              </a>
+            </div>
           </div>
         </section>
 
