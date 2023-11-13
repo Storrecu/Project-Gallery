@@ -131,7 +131,3 @@ server.use(express.static(staticServerPath));
 //static server styles
 const pathServerPublicStyles = './src/public-css';
 server.use(express.static(pathServerPublicStyles));
-
-//statis server images
-const staticImagesServerthPath = './src/public-image';
-server.use(express.static(staticImagesServerthPath));

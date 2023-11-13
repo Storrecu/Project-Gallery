@@ -28,7 +28,7 @@ const Card = ({ data }) => {
         </section>
 
         <section className="info-autor">
-          <img className="image" src={data.image || userImg} alt="" />
+          <img className="image" src={data.image || `${userImg}`} alt="" />
 
           <p className="job">{data.job || 'Full Stack Developer'}</p>
           <p className="name">{data.autor || 'Emmelie Björklund'}</p>

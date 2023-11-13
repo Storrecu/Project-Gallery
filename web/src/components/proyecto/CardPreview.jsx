@@ -6,9 +6,10 @@ import Card from '../Card';
 
 const CardPreview = ({ data }) => {
   console.log('data >> ', data);
+  const backImage = data.photo === '' ? projectImg : data.photo;
   return (
     <section className="preview">
-      <img className="image_leaves" src={data.photo || projectImg} alt="" />
+      <img className="image_leaves" src={backImage} alt="" />
       <Card data={data} />
     </section>
   );
