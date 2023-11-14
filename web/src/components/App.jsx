@@ -12,6 +12,8 @@ import ls from '../services/localStorage';
 import { Route, Routes } from 'react-router-dom';
 import { matchPath } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import projectImg from '../images/2.jpg';
+import userImg from '../images/user.jpeg';
 
 import Projects from './Projects';
 import GetAvatar from './proyecto/GetAvatar';
@@ -32,9 +34,9 @@ function App() {
           desc: '',
           autor: '',
           job: '',
-          image: 'src/images/user.jpeg',
+          image: '',
           // foto autora
-          photo: 'src/images/2.jpg',
+          photo: '',
           // photo: 'src/images/playa.jpg',
           // foto proyecto
         };
