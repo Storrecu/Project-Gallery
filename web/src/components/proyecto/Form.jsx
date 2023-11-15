@@ -138,13 +138,11 @@ const Form = ({
       <section className="buttons-img">
         <GetAvatar
           className="btn"
-          avatar={data.image}
           updateAvatar={(image) => handleChangeInput('image', image)}
           text="Subir foto de la autora"
         />
         <GetAvatar
           className="btn"
-          avatar={data.photo}
           updateAvatar={(image) => handleChangeInput('photo', image)}
           text="Subir foto del proyecto"
         />

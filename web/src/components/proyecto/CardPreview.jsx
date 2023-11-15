@@ -5,11 +5,10 @@ import PropTypes from 'prop-types';
 import Card from '../Card';
 
 const CardPreview = ({ data }) => {
-  console.log('data >> ', data);
-  const backImage = data.photo === '' ? projectImg : data.photo;
+  const backImage = data.photo || projectImg;
   return (
     <section className="preview">
-      <img className="image_leaves" src={backImage} alt="" />
+      <img className="image_leaves" src={backImage} alt={backImage} />
       <Card data={data} />
     </section>
   );

@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import defaultAvatar from '../../images/user.jpeg';
-import ls from '../../services/localStorage';
 import '../../styles/layout/GetAvatar.scss';
-function GetAvatar({ avatar = defaultAvatar, updateAvatar, text }) {
+
+function GetAvatar({ updateAvatar, text }) {
   const fr = new FileReader();
   const myFileField = React.createRef();
 
@@ -12,10 +11,14 @@ function GetAvatar({ avatar = defaultAvatar, updateAvatar, text }) {
       const myFile = ev.currentTarget.files[0];
       fr.addEventListener('load', () => {
         updateAvatar(fr.result);
-        ls.set('userImage', fr.result);
       });
       fr.readAsDataURL(myFile);
     }
+  };
+
+  const getImage = () => {
+    const image = fr.result;
+    updateAvatar(image);
   };
 
   return (
@@ -34,7 +37,6 @@ function GetAvatar({ avatar = defaultAvatar, updateAvatar, text }) {
 }
 
 GetAvatar.propTypes = {
-  avatar: PropTypes.string,
   updateAvatar: PropTypes.func.isRequired,
   text: PropTypes.string,
 };

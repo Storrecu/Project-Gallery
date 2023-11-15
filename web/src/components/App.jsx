@@ -19,7 +19,6 @@ import Projects from './Projects';
 import GetAvatar from './proyecto/GetAvatar';
 
 function App() {
-  console.log('adasdasda');
   //States
   const [data, setData] = useState(() => {
     const savedData = ls.get('formData');
@@ -75,10 +74,10 @@ function App() {
     }
 
     // También cargar la imagen del usuario desde localStorage
-    const savedUserImage = ls.get('userImage');
-    if (savedUserImage) {
-      setAvatar(savedUserImage);
-    }
+    // const savedUserImage = ls.get('userImage');
+    // if (savedUserImage) {
+    //   setAvatar(savedUserImage);
+    // }
   }, []);
 
   // Handlers
@@ -183,7 +182,7 @@ function App() {
 
   const updateAvatar = (avatar) => {
     setAvatar(avatar);
-    ls.set('userImage', avatar);
+    // ls.set('userImage', avatar);
   };
 
   const clearFormData = () => {
@@ -196,8 +195,8 @@ function App() {
       desc: '',
       autor: '',
       job: '',
-      image: 'src/images/user.jpeg',
-      photo: 'src/images/2.jpg',
+      // image: { userImg },
+      // photo: { projectImg },
     });
     ls.remove('formData');
   };
